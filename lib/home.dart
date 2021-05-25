@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/application_view');
+                        Navigator.pushNamed(context, '/HR_view');
                       },
-                      child: Text('Job View'),
+                      child: Text('HR View'),
                     ),
                     SizedBox(
                       height: 10,
