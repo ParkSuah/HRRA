@@ -1,5 +1,7 @@
 
 
+import 'package:final_project/HR_view.dart';
+import 'package:final_project/staff_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/application_offer': (context) => GainPage(),
         '/application_apply': (context) => ApplyPage(),
+        '/staff_collection': (context) => StaffCollectionPage(),
+        '/HR_view': (context) => HRviewPage(),
       },
       onGenerateRoute: _getRoute,
       // TODO: Add a theme (103)
