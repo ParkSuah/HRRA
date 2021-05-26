@@ -78,6 +78,12 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text('Possible Matching'),
                     ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/staff_collection');
+                      },
+                      child: Text('Staff Info'),
+                    ),
                   ]),
             ],
           ),
