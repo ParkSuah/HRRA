@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:final_project/widgets.dart';
@@ -173,10 +174,11 @@ class _ImagePickerState extends State<ImagePickerWidget>{
 
   @override
   Widget build(BuildContext context){
+    // FirebaseProvider
     return Column(
         children: [
           _image == null
-              ? Image.network('http://handong.edu/site/handong/res/img/logo.png', height: 149)
+              ? Image.network('https://upload.wikimedia.org/wikipedia/commons/e/ee/UN_emblem_blue.svg', height: 149)
               : Image.file(_image, height: 149,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -188,7 +190,8 @@ class _ImagePickerState extends State<ImagePickerWidget>{
             ],
           ),
           Text(
-              'Product Name',
+              'Name',
+              // Text(auth.currentUser.uid),
               style: TextStyle(fontSize: 15, fontWeight:FontWeight.w500, color: Colors.blueAccent)
           ),
           Divider(

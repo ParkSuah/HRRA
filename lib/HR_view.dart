@@ -2,7 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'offer.dart';
+
 class HRviewPage extends StatefulWidget {
+  Offer offer;
+  HRviewPage({this.offer});
+
   @override
   _HRviewPageState createState() => _HRviewPageState();
 }
@@ -12,15 +17,24 @@ class _HRviewPageState extends State<HRviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('HR View')),
-      body: const MyStatelessWidget(),
+      body: MyStateWidget(),
     );
   }
 }
-class MyStatelessWidget extends StatelessWidget {
-  const MyStatelessWidget({Key key}) : super(key: key);
+
+class MyStateWidget extends StatefulWidget {
+  Offer offer;
+  MyStateWidget({this.offer});
 
   @override
-  Widget build(BuildContext context) {
+  State<StatefulWidget> createState() => MyStateWidgetState();
+}
+
+class MyStateWidgetState extends State<MyStateWidget>{
+  // const MyStateWidget({Key key}) : super(key: key);
+
+  @override
+  Widget _buildMyStateWidget(BuildContext context, Offer offer) {
     return  ListView(
       scrollDirection: Axis.horizontal,
         children: [
@@ -84,7 +98,8 @@ class MyStatelessWidget extends StatelessWidget {
             rows: const <DataRow>[
               DataRow(
                 cells: <DataCell>[
-                  DataCell(Text('12345')),
+                  // DataCell(Text('12345')),
+                  DataCell(Text(offer.ID)),
                   DataCell(Text('Suah')),
                   DataCell(Text('Park')),
                   DataCell(Text('F')),
