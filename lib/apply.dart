@@ -6,8 +6,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 import 'authentication.dart';
 import 'login.dart';
+import 'offer.dart';
 
 class ApplyPage extends StatefulWidget {
+  Offer offer;
+  ApplyPage({this.offer});
+
   @override
   _ApplyPageState createState() => _ApplyPageState();
 }
