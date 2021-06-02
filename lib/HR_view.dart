@@ -18,16 +18,22 @@ class _HRviewPageState extends State<HRviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('HR View')),
-      body: MyStatelessWidget(),
+      body: MyStatefulWidget(),
     );
   }
 }
 
-class MyStatelessWidget extends StatelessWidget {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('offering').snapshots();
+class MyStatefulWidget extends StatefulWidget {
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
 
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('offering').snapshots();
+  var _isChecked = false;
   @override
   Widget build(BuildContext context) {
+
     // List<DocumentSnapshot> document;
     return StreamBuilder<QuerySnapshot>(
       stream: _usersStream,
@@ -48,7 +54,6 @@ class MyStatelessWidget extends StatelessWidget {
             //   subtitle: new Text(document.data()['lastname']),
             // );
             return new DataTable(
-
               columns: const <DataColumn>[
                 DataColumn(
                   label: Text(
@@ -112,7 +117,16 @@ class MyStatelessWidget extends StatelessWidget {
                   DataRow(
                     cells: <DataCell>[
                       // DataCell(new Text(document.data()['ID'])),
-                      DataCell(new Checkbox( value: true, onChanged: (bool value) {}, )),
+                      DataCell(
+                          new Checkbox(
+                            value: document.data()['isSelected'],
+                            onChanged: (newValue) {
+                              setState(() {
+                                _isChecked = document.data()['isSelected'];
+                              });
+                            },
+                          )
+                      ),
                       DataCell(Expanded(child: new Text(document.data()['firstname']))),
                       DataCell(Expanded(child:new Text(document.data()['lastname']))),
                       DataCell(Expanded(child:new Text(document.data()['gender']))),
