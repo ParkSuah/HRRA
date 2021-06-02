@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,161 +21,209 @@ class _HRviewPageState extends State<HRviewPage> {
       body: MyStatelessWidget(),
     );
   }
-
-  // Widget _buildCol(BuildContext context, DocumentSnapshot data) {
-  //   final Offer offer = Offer.fromSnapshot(data);
-  //
-  //   return ListView{
-  //     scrollDirection: Axis.horizontal,
-  //     children: [
-  //
-  //   rows: const <DataRow>(
-  //       cells: <DataCell>[
-  //         DataCell(Text('12345')),
-  //         // DataCell(Text(offer.ID)),
-  //         DataCell(Text('Suah')),
-  //         DataCell(Text('Park')),
-  //         DataCell(Text('F')),
-  //         DataCell(Text('USA')),
-  //         DataCell(Text('Position1')),
-  //         DataCell(Text('2')),
-  //         DataCell(Text('LA')),
-  //         DataCell(Text('12345.pdf')),
-  //       ],
-  //     )
-  //   },
-  // },
-  // }
-
 }
 
 class MyStatelessWidget extends StatelessWidget {
-  Offer offer;
-  MyStatelessWidget({this.offer});
-//
-//   @override
-//   State<StatefulWidget> createState() => MyStateWidgetState();
-// }
-//
-// class MyStateWidgetState extends State<MyStateWidget>{
-  // const MyStateWidget({Key key}) : super(key: key);
+  // Offer offer;
+  // MyStatelessWidget({this.offer});
+
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('offering').snapshots();
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference offers = FirebaseFirestore.instance.collection('offering');
-    return  ListView(
-      scrollDirection: Axis.horizontal,
-        children: [
-          DataTable(
-            columns: const <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'ID#',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'First name',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Last name',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Gender',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Nationality',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Current Position title',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Current position level',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Current duty station',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'PHP',
-                  style: TextStyle(fontStyle: FontStyle.italic),
-                ),
-              ),
-            ],
+    // List<DocumentSnapshot> list;
+    return StreamBuilder<QuerySnapshot>(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
 
-            // return FutureBuilder<DocumentSnapshot>(
-            //   future: offers.doc(offers.id).get(),
-            //   builder:
-            //   (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-            //   if (snapshot.hasError) {
-            //   return Text("Something went wrong");
-            //   }
-            //
-            //   if (snapshot.hasData && !snapshot.data.exists) {
-            //   return Text("Document does not exist");
-            //   }
-            //
-            //   if (snapshot.connectionState == ConnectionState.done) {
-            //   Map<String, dynamic> data = snapshot.data.data();
-            //   return Text("Full Name: ${data['firstname']} ${data['lastname']}");
-            //   }
-            //
-            //   return Text("loading");
-            //   },
+        return new ListView(
+          children: snapshot.data.docs.map((DocumentSnapshot document) {
+            // return new ListTile(
+            //   title: new Text(document.data()['firstname']),
+            //   subtitle: new Text(document.data()['lastname']),
             // );
+            return new DataTable(
+              columns: const <DataColumn>[
+                DataColumn(
+                  label: Text(
+                    'ID#',
+                    // document.data()['firstname'],
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'First name',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Last name',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Gender',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Nationality',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Current Position title',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Current position level',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Current duty station',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'PHP',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
 
-            rows: const <DataRow>[
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('12345')),
-                  // DataCell(Text(offer.ID)),
-                  DataCell(Text('Suah')),
-                  DataCell(Text('Park')),
-                  DataCell(Text('F')),
-                  DataCell(Text('USA')),
-                  DataCell(Text('Position1')),
-                  DataCell(Text('2')),
-                  DataCell(Text('LA')),
-                  DataCell(Text('12345.pdf')),
-                ],
-              ),
-              DataRow(
-                cells: <DataCell>[
-                  DataCell(Text('12346')),
-                  DataCell(Text('Mark')),
-                  DataCell(Text('Lee')),
-                  DataCell(Text('M')),
-                  DataCell(Text('Canada')),
-                  DataCell(Text('Position3')),
-                  DataCell(Text('3')),
-                  DataCell(Text('Vancouver')),
-                  DataCell(Text('12346.pdf')),
-                ],
-              ),
-            ],
-          ),
-        ],
+              ],
+              rows: <DataRow>[
+                DataRow(
+                  cells: <DataCell>[
+                    DataCell(new Text(document.data()['ID'])),
+                    DataCell(new Text(document.data()['firstname'])),
+                    DataCell(new Text(document.data()['lastname'])),
+                    DataCell(new Text(document.data()['gender'])),
+                    DataCell(new Text(document.data()['nationality'])),
+                    DataCell(new Text(document.data()['cu_position_title'])),
+                    DataCell(new Text(document.data()['cu_position_level'])),
+                    DataCell(new Text(document.data()['cu_position_dutystation'])),
+                    DataCell(new Text(document.data()['PHP'])),
+                  ],
+                ),
+              ],
+            );
+          }).toList(),
+        );
+      },
     );
   }
+
+  /*
+  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
+    return new ListView(
+      scrollDirection: Axis.horizontal,
+      children: [
+        DataTable(
+          columns: const <DataColumn>[
+            DataColumn(
+              label: Text(
+                'ID#',
+                // document.data()['firstname'],
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'First name',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Last name',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Gender',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Nationality',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Current Position title',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Current position level',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Current duty station',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'PHP',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+            ),
+          ],
+
+          rows: const <DataRow>[
+            DataRow(
+              cells: <DataCell>[
+                DataCell(Text('12345')),
+                // DataCell(Text(offer.ID)),
+                DataCell(Text('Suah')),
+                DataCell(Text('Park')),
+                DataCell(Text('F')),
+                DataCell(Text('USA')),
+                DataCell(Text('Position1')),
+                DataCell(Text('2')),
+                DataCell(Text('LA')),
+                DataCell(Text('12345.pdf')),
+              ],
+            ),
+            DataRow(
+              cells: <DataCell>[
+                DataCell(Text('12346')),
+                DataCell(Text('Mark')),
+                DataCell(Text('Lee')),
+                DataCell(Text('M')),
+                DataCell(Text('Canada')),
+                DataCell(Text('Position3')),
+                DataCell(Text('3')),
+                DataCell(Text('Vancouver')),
+                DataCell(Text('12346.pdf')),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }*/
 }
