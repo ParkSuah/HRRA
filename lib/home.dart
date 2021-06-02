@@ -46,7 +46,11 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ElevatedButton(
-                        onPressed: () {
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lightGreenAccent,
+                          minimumSize: Size(200, 100),
+                        ),
+                     onPressed: () {
                           Navigator.pushNamed(context, '/application_offer');
                         },
                         child: Text('Job Offer')),
@@ -54,6 +58,10 @@ class _HomePageState extends State<HomePage> {
                       height: 10,
                     ),
                     ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.lightGreenAccent,
+                        minimumSize: Size(200, 100),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/application_apply');
                       },
@@ -63,6 +71,10 @@ class _HomePageState extends State<HomePage> {
                       height: 10,
                     ),
                     ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.lightGreenAccent,
+                        minimumSize: Size(200, 100),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/HR_view');
                       },
@@ -73,12 +85,23 @@ class _HomePageState extends State<HomePage> {
                     ),
                     // 만약 현재 유저가 HM 라면 보여지는 버튼으로 구현
                     ElevatedButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.lightGreenAccent,
+                        minimumSize: Size(200, 100),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/matching');
                       },
                       child: Text('Possible Matching'),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ElevatedButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.lightGreenAccent,
+                        minimumSize: Size(200, 100),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/staff_collection');
                       },

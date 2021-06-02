@@ -182,7 +182,7 @@ class _ImagePickerState extends State<ImagePickerWidget>{
     return Column(
         children: [
           _image == null
-              ? Image.network('https://upload.wikimedia.org/wikipedia/commons/e/ee/UN_emblem_blue.svg', height: 149)
+              ? Image.network('https://i1.wp.com/blogs.un.org/wp-content/uploads/2015/10/LOGO2.jpg', height: 149)
               : Image.file(_image, height: 149,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -194,7 +194,7 @@ class _ImagePickerState extends State<ImagePickerWidget>{
             ],
           ),
           Text(
-              'Your Name',
+              FirebaseAuth.instance.currentUser.displayName,
               // Text(auth.currentUser.uid),
               style: TextStyle(fontSize: 15, fontWeight:FontWeight.w500, color: Colors.blueAccent)
           ),

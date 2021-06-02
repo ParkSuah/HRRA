@@ -40,27 +40,26 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
-        _guestBookSubscription = FirebaseFirestore.instance
-            .collection('userList')
-            .orderBy('timestamp', descending: true)
-            .snapshots()
-            .listen((snapshot) {
-          _guestBookMessages = [];
-          snapshot.docs.forEach((document) {
-            _guestBookMessages.add(
-              Users(
-                first_name: document.data()['firstName'],
-                last_name: document.data()['lastName'],
-                id: document.data()['userId'],
-                phone: document.data()['phone'],
-                date: DateTime.fromMillisecondsSinceEpoch(
-                    document.data()['timestamp']),
-                doc_id: document.id,
-              ),
-            );
-          });
-          notifyListeners();
-        });
+        // _guestBookSubscription = FirebaseFirestore.instance
+        //     .collection('userList')
+        //     .orderBy('timestamp', descending: true)
+        //     .snapshots()
+        //     .listen((snapshot) {
+        //   _guestBookMessages = [];
+        //   snapshot.docs.forEach((document) {
+        //     _guestBookMessages.add(
+        //       Users(
+        //         uuid: document.data()['uuid'],
+        //         first_name: document.data()['firstName']+"hehe",
+        //         last_name: document.data()['lastName'],
+        //         phone: document.data()['phone'],
+        //         position: document.data()['position']==1?'Hiring Manager':'General', // Nothing
+        //       ),
+        //     );
+        //   });
+        //   notifyListeners();
+        // });
+        notifyListeners();
         // Add from here // 추가하고 싶은 거 초기화하고
       } else {
         _loginState = ApplicationLoginState.loggedOut;
@@ -154,124 +153,44 @@ class ApplicationState extends ChangeNotifier {
 class Users {
   Users(
       {
+        @required this.uuid,
         @required this.first_name,
         @required this.last_name,
-        @required this.id,
         @required this.phone,
-        @required this.date,
         @required this.position,
-        @required this.doc_id});
+        this.created,
+        this.modified,
+      }) :
+        assert(uuid != null),
+        assert(first_name != null),
+        assert(last_name != null),
+        assert(phone != null),
+        assert(position != null)
+  ;
+  final String uuid;
   final String first_name;
   final String last_name;
-  final String id;
   final String phone;
-  final DateTime date;
-  final int position;
-  final String doc_id;
+  final String position;
+  final Timestamp created;
+  final Timestamp modified;
+  DocumentReference reference;
+
+  Users.fromMap(Map<String, dynamic> map, {this.reference})
+  :
+        assert(map['uuid'] != null),
+        assert(map['first_name'] != null),
+        assert(map['last_name'] != null),
+        assert(map['phone'] != null),
+        assert(map['position'] != null),
+        uuid = map['uuid'],
+        first_name = map['first_name'],
+        last_name = map['last_name'],
+        phone = map['phone'],
+        position= map['position'],
+        created = map['created']??null,
+        modified = map['modified']??null;
+
+  Users.fromSnapshot(DocumentSnapshot snapshot)
+    : this.fromMap(snapshot.data(), reference: snapshot.reference);
 }
-
-/*
-class UserList extends StatefulWidget {
-  UserList(
-      {
-        @required this.addMessage,
-        @required this.deleteMessage,
-        @required this.messages});
-  final FutureOr<void> Function(String message) addMessage;
-  final FutureOr<void> Function(String message_id) deleteMessage;
-  final List<UserList> messages;
-
-  @override
-  _GuestBookState createState() => _GuestBookState();
-}
-
-class _GuestBookState extends State<UserList> {
-  final _formKey = GlobalKey<FormState>(debugLabel: '_GuestBookState');
-  final _controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    String current_id;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formKey,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      hintText: 'Leave a message',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Enter your message to continue';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      await widget.addMessage(_controller.text);
-                      _controller.clear();
-                    }
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.send),
-                      SizedBox(width: 4),
-                      Text('SEND'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: 8),
-        for (var message in widget.messages)
-          Row(
-            children: [
-              SizedBox(width: 8),
-              Container(
-                constraints: BoxConstraints(maxWidth: 350, minWidth: 350),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 10),
-                    Paragraph('${message.name}: ${message.message}'),
-                    Row(
-                      children: [
-                        SizedBox(width: 8),
-                        message.date != null
-                            ? Text('${message.date}')
-                            : Paragraph('no id'), // date 들어가면 될듯
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                  ],
-                ),
-              ),
-              // current_id == message.id?
-              FirebaseAuth.instance.currentUser!.uid.compareTo(message.id) == 0
-                  ? IconButton(
-                  icon: Icon(Icons.delete_outline),
-                  onPressed: () async {
-                    await widget.deleteMessage(message.doc_id);
-                  })
-                  : SizedBox(width: 0)
-            ],
-          ),
-        SizedBox(height: 8),
-      ],
-    );
-  }
-}
- */

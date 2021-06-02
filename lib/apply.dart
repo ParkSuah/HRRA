@@ -70,11 +70,10 @@ class _ApplyPageState extends State<ApplyPage> {
                 // return TextButton(
                 //   child: Text("save", style: TextStyle(fontSize: 20.0, color: Colors.white),),
                 //   onPressed: () async {
-                return TextButton(
+                return IconButton(
                   onPressed: addPost,
-                  child: Text(
-                    "Add Offering", style: TextStyle(fontSize: 20.0, color: Colors.white),
-                  ),
+                  icon: Icon(Icons.add),
+                  iconSize: 30,
                 );
                   // },
                   // );

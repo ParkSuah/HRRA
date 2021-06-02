@@ -99,3 +99,67 @@ class Offer {
   // String get imagePath => 'gs://final1009-da751.appspot.com/images/' + filename;//'$id-0.jpg';
 
 }
+
+class Apply {
+  Apply({
+    @required this.uuid,
+    @required this.title,
+    @required this.level,
+    @required this.post,
+    @required this.division,
+    @required this.branch,
+    @required this.duty,
+    this.created,
+    this.modified,
+  }) :
+        assert(uuid != null),
+        assert(title != null),
+        assert(level != null),
+        assert(post != null),
+        assert(division != null),
+        assert(branch != null),
+        assert(duty != null)
+  //assert(created != null)
+  //assert(modified != null)
+      ;
+
+  final String uuid;
+  final String title;
+  final String level;
+  final String post;
+  final String division;
+  final String branch;
+  final String duty;
+  final Timestamp created;
+  final Timestamp modified;
+  DocumentReference reference;
+
+  Apply.fromMap(Map<String, dynamic> map, {this.reference})
+      :
+        assert(map['uuid'] != null),
+        assert(map['title'] != null),
+        assert(map['level'] != null),
+        assert(map['post'] != null),
+        assert(map['division'] != null),
+        assert(map['branch'] != null),
+        assert(map['duty'] != null),
+  //assert(map['created'] != null),
+  //assert(map['modified'] != null),
+        uuid = map['uuid'],
+        title = map['title'],
+        level = map['level'],
+        post = map['post'],
+        division = map['division'],
+        branch = map['branch'],
+        duty = map['duty'],
+        created = map['created']??null,
+        modified = map['modified']??null
+  ;
+
+  Apply.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromMap(snapshot.data(), reference: snapshot.reference);
+
+// String get imagePath => 'gs://final1009-da751.appspot.com/images/' + filename;//'$id-0.jpg';
+
+}
+
