@@ -50,13 +50,13 @@ class MyStatelessWidget extends StatelessWidget {
             // );
             return new DataTable(
               columns: const <DataColumn>[
-                DataColumn(
-                  label: Text(
-                    'ID#',
-                    // document.data()['firstname'],
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
-                ),
+                // DataColumn(
+                //   label: Text(
+                //     'ID#',
+                //     // document.data()['firstname'],
+                //     style: TextStyle(fontStyle: FontStyle.italic),
+                //   ),
+                // ),
                 DataColumn(
                   label: Text(
                     'First name',
@@ -110,7 +110,7 @@ class MyStatelessWidget extends StatelessWidget {
               rows: <DataRow>[
                 DataRow(
                   cells: <DataCell>[
-                    DataCell(new Text(document.data()['ID'])),
+                    // DataCell(new Text(document.data()['ID'])),
                     DataCell(new Text(document.data()['firstname'])),
                     DataCell(new Text(document.data()['lastname'])),
                     DataCell(new Text(document.data()['gender'])),
