@@ -24,7 +24,8 @@ class _HRviewPageState extends State<HRviewPage> {
 }
 
 class MyStatelessWidget extends StatelessWidget {
-  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('offering').snapshots();
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('offering').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,6 @@ class MyStatelessWidget extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: _usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-
         if (snapshot.hasError) {
           return Text('Something went wrong');
         }
@@ -41,93 +41,105 @@ class MyStatelessWidget extends StatelessWidget {
           return Text("Loading");
         }
 
-        return new ListView(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
-            // return new ListTile(
-            //   title: new Text(document.data()['firstname']),
-            //   subtitle: new Text(document.data()['lastname']),
-            // );
-            return new DataTable(
-
-              columns: const <DataColumn>[
-                DataColumn(
-                  label: Text(
-                    'Selected',
-                    // document.data()['firstname'],
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
+        return new ListView(children: [
+          DataTable(
+            columns: const <DataColumn>[
+              DataColumn(
+                label: Text(
+                  'Selected',
+                  // document.data()['firstname'],
+                  style: TextStyle(fontStyle: FontStyle.italic),
                 ),
-                DataColumn(
-                  label: Expanded(child: Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'First name',
                     style: TextStyle(fontStyle: FontStyle.italic),
                   ),
-                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child: Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'Last name',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
+                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child:Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'Gender',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
+                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child:Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'Nationality',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
+                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child:Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'Current Position title',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
+                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child:Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'Current position level',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
+                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child:Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'Current duty station',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
+                  ),
                 ),
-                DataColumn(
-                  label: Expanded(child:Text(
+              ),
+              DataColumn(
+                label: Expanded(
+                  child: Text(
                     'PHP',
                     style: TextStyle(fontStyle: FontStyle.italic),
-                  ),),
-                ),
-
-              ],
-              rows: <DataRow>[
-                  DataRow(
-                    cells: <DataCell>[
-                      // DataCell(new Text(document.data()['ID'])),
-                      DataCell(new Checkbox( value: true, onChanged: (bool value) {}, )),
-                      DataCell(Expanded(child: new Text(document.data()['firstname']))),
-                      DataCell(Expanded(child:new Text(document.data()['lastname']))),
-                      DataCell(Expanded(child:new Text(document.data()['gender']))),
-                      DataCell(Expanded(child:new Text(document.data()['nationality']))),
-                      DataCell(Expanded(child:new Text(document.data()['cu_position_title']))),
-                      DataCell(Expanded(child:new Text(document.data()['cu_position_level']))),
-                      DataCell(Expanded(child:new Text(document.data()['cu_position_dutystation']))),
-                      DataCell(Expanded(child:new Text(document.data()['PHP']))),
-                    ],
                   ),
-              ],
-            );
-          }).toList(),
-        );
+                ),
+              ),
+            ],
+            rows: _buildList(context, snapshot.data.docs),
+          ),
+        ]);
       },
     );
+  }
+
+  List<DataRow> _buildList(BuildContext context, List<DocumentSnapshot> snapshot){
+    return snapshot.map((data) => _buildListItem(context, data)).toList();
+  }
+
+  DataRow _buildListItem(BuildContext context, DocumentSnapshot data){
+    final record = Offer.fromSnapshot(data);
+
+    return DataRow(cells: [
+      DataCell(new Checkbox(value: false, onChanged: (bool value){})),
+      DataCell(Expanded(child: new Text(data['firstname']))),
+      DataCell(Expanded(child: new Text(data['lastname']))),
+      DataCell(Expanded(child: new Text(data['gender']))),
+      DataCell(Expanded(child: new Text(data['nationality']))),
+      DataCell(Expanded(child: new Text(data['cu_position_title']))),
+      DataCell(Expanded(child: new Text(data['cu_position_level']))),
+      DataCell(Expanded(child: new Text(data['cu_position_dutystation']))),
+      DataCell(Expanded(child: new Text(data['PHP']))),
+    ]);
   }
 }

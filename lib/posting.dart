@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/apply.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,9 +45,10 @@ class _PostingPageState extends State<PostingPage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 TextButton(onPressed: (){
-                                  print("show applicant");
+                                  print("apply button pressed");
+                                  Navigator.pushNamed(context, '/application_apply');
                                 },
-                                    child: Expanded(child: Text("Applicant")),),
+                                    child: Expanded(child: Text("Apply")),),
                                     Expanded(flex: 5, child: SizedBox(width: 50,)),
                               ],
                             ),)

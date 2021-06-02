@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white24,
         title: Text(
           'Home',
           style: TextStyle(color: Colors.white),
@@ -39,6 +38,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     ElevatedButton(
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.lightGreenAccent,
+                          backgroundColor: Colors.pinkAccent,
                           minimumSize: Size(200, 100),
                         ),
                      onPressed: () {
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ElevatedButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.lightGreenAccent,
+                        backgroundColor: Colors.pinkAccent,
                         minimumSize: Size(200, 100),
                       ),
                       onPressed: () {
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ElevatedButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.lightGreenAccent,
+                        backgroundColor: Colors.pinkAccent,
                         minimumSize: Size(200, 100),
                       ),
                       onPressed: () {
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                     // 만약 현재 유저가 HM 라면 보여지는 버튼으로 구현
                     ElevatedButton(
                       style: TextButton.styleFrom(
-                          backgroundColor: Colors.lightGreenAccent,
+                          backgroundColor: Colors.pinkAccent,
                         minimumSize: Size(200, 100),
                       ),
                       onPressed: () {
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ElevatedButton(
                       style: TextButton.styleFrom(
-                          backgroundColor: Colors.lightGreenAccent,
+                          backgroundColor: Colors.pinkAccent,
                         minimumSize: Size(200, 100),
                       ),
                       onPressed: () {
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     ElevatedButton(
                       style: TextButton.styleFrom(
-                        backgroundColor: Colors.lightGreenAccent,
+                        backgroundColor: Colors.pinkAccent,
                         minimumSize: Size(200, 100),
                       ),
                       onPressed: () {

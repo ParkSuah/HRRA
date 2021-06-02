@@ -35,7 +35,6 @@ class _ApplyPageState extends State<ApplyPage> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white24,
           title: Text(
             'HRRA | Jop Apply',
             style: TextStyle(color: Colors.white),

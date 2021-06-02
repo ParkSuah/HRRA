@@ -34,7 +34,6 @@ class _GainPageState extends State<GainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white24,
           title: Text(
             'HRRA | application',
             style: TextStyle(color: Colors.white),
