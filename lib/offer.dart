@@ -6,22 +6,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 import 'dart:io';
 
-// FirebaseStorage storage = FirebaseStorage(
-//     storageBucket: storagePath
-// );
-
-// Future<dynamic> uploadImage(File imageFile) async {
-//   //Create a reference to the location you want to upload to in firebase
-//   StorageReference reference = storage.ref().child("images").child(path.basename(imageFile.path));
-//   //Upload the file to firebase
-//   return reference.putFile(imageFile).onComplete;
-// }
-//
-// Future<String> getImageURL(String filename) async {
-//
-//   return await storage.ref().child('images').child(filename).getDownloadURL();
-// }
-
 class Offer {
   Offer({
     @required this.uuid,
@@ -34,6 +18,7 @@ class Offer {
     @required this.cu_position_title,
     @required this.cu_position_level,
     @required this.cu_position_dutystation,
+    @required this.isSelected,
     this.created,
     this.modified,
   }) :
@@ -46,7 +31,8 @@ class Offer {
         assert(nationality != null),
         assert(cu_position_title != null),
         assert(cu_position_level != null),
-        assert(cu_position_dutystation != null)
+        assert(cu_position_dutystation != null),
+        assert(isSelected != null)
   //assert(created != null)
   //assert(modified != null)
       ;
@@ -61,6 +47,7 @@ class Offer {
   final String cu_position_title;
   final String cu_position_level;
   final String cu_position_dutystation;
+  final bool isSelected;
   final Timestamp created;
   final Timestamp modified;
   DocumentReference reference;
@@ -77,6 +64,7 @@ class Offer {
         assert(map['cu_position_title'] != null),
         assert(map['cu_position_level'] != null),
         assert(map['cu_position_dutystation'] != null),
+        assert(map['isSelected'] != null),
   //assert(map['created'] != null),
   //assert(map['modified'] != null),
         uuid = map['uuid'],
@@ -89,6 +77,7 @@ class Offer {
         cu_position_title = map['cu_position_title'],
         cu_position_level = map['cu_position_level'],
         cu_position_dutystation = map['cu_position_dutystation'],
+        isSelected = map['isSelected'],
         created = map['created']??null,
         modified = map['modified']??null
   ;

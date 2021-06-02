@@ -107,6 +107,19 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text('Staff Info'),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.lightGreenAccent,
+                        minimumSize: Size(200, 100),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/posting');
+                      },
+                      child: Text('Posting'),
+                    ),
                   ]),
             ],
           ),
