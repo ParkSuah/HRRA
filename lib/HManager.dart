@@ -46,13 +46,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           return Text("Loading");
         }
         // if(snapshot.data()['isSelected'] == true) {
-        return new ListView(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
+        return new ListView(children: [
+          // children: snapshot.data.docs.map((DocumentSnapshot document) {
             // return new ListTile(
             //   title: new Text(document.data()['firstname']),
             //   subtitle: new Text(document.data()['lastname']),
             // );
-            return new DataTable(
+            DataTable(
               columns: const <DataColumn>[
                 // DataColumn(
                 //   label: Text(
@@ -112,36 +112,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
 
               ],
-              rows: <DataRow>[
-                DataRow(
-                  cells: <DataCell>[
-                //     // DataCell(new Text(document.data()['ID'])),
-                //     DataCell(
-                //         new Checkbox(
-                //           value: document.data()['isSelected'],
-                //           onChanged: (newValue) {
-                //             setState(() {
-                //               _isChecked = document.data()['isSelected'];
-                //             });
-                //           },
-                //         )
-                //     ),
-                    DataCell(Expanded(child: new Text(document.data()['firstname']))),
-                    DataCell(Expanded(child:new Text(document.data()['lastname']))),
-                    DataCell(Expanded(child:new Text(document.data()['gender']))),
-                    DataCell(Expanded(child:new Text(document.data()['nationality']))),
-                    DataCell(Expanded(child:new Text(document.data()['cu_position_title']))),
-                    DataCell(Expanded(child:new Text(document.data()['cu_position_level']))),
-                    DataCell(Expanded(child:new Text(document.data()['cu_position_dutystation']))),
-                    DataCell(Expanded(child:new Text(document.data()['PHP']))),
-                  ],
-                ),
-              ],
-            );
-          }).toList(),
-          // },
-        );
+              rows: _buildList(context, snapshot.data.docs),
+            ),
+        ]);
       },
     );
+  }
+  List<DataRow> _buildList(BuildContext context, List<DocumentSnapshot> snapshot){
+    return snapshot.map((data) => _buildListItem(context, data)).toList();
+  }
+
+  DataRow _buildListItem(BuildContext context, DocumentSnapshot data){
+    // String current_doc = data['']
+    CollectionReference posts = FirebaseFirestore.instance.collection('offering');
+    return DataRow(cells: [
+      DataCell(Expanded(child: new Text(data['firstname']))),
+      DataCell(Expanded(child: new Text(data['lastname']))),
+      DataCell(Expanded(child: new Text(data['gender']))),
+      DataCell(Expanded(child: new Text(data['nationality']))),
+      DataCell(Expanded(child: new Text(data['cu_position_title']))),
+      DataCell(Expanded(child: new Text(data['cu_position_level']))),
+      DataCell(Expanded(child: new Text(data['cu_position_dutystation']))),
+      DataCell(Expanded(child: new Text(data['PHP']))),
+    ]);
   }
 }
