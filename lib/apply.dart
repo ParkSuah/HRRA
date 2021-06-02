@@ -42,7 +42,9 @@ class _ApplyPageState extends State<ApplyPage> {
           ),
           actions: <Widget>[
             Builder(
-                builder: (context) {String uuid = Uuid().v1();
+                builder: (context) {
+                  String uuid = Uuid().v1();
+                  bool isSelected = false;
                 CollectionReference posts = FirebaseFirestore.instance.collection('offering');
 
                 Future<void> addPost() {
@@ -50,6 +52,7 @@ class _ApplyPageState extends State<ApplyPage> {
                   return posts
                       .add({
                     'uuid': uuid,
+                    'isSelected' : isSelected,
                     'PHP': _phpController.text,
                     'ID': _IdController.text,
                     'firstname': _firstNameController.text,
