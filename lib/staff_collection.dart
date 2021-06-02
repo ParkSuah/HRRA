@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:final_project/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -176,36 +177,53 @@ class _ImagePickerState extends State<ImagePickerWidget>{
     });
   }
 
+  final Stream<QuerySnapshot> _userInfoStream = FirebaseFirestore.instance.collection('userInfo').snapshots();
   @override
   Widget build(BuildContext context){
     // FirebaseProvider
-    return Column(
-        children: [
-          _image == null
-              ? Image.network('https://i1.wp.com/blogs.un.org/wp-content/uploads/2015/10/LOGO2.jpg', height: 149)
-              : Image.file(_image, height: 149,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                icon: Icon(Icons.photo_camera),
-                onPressed: getImage,
-              ),
-            ],
-          ),
-          Text(
-              FirebaseAuth.instance.currentUser.displayName,
-              // Text(auth.currentUser.uid),
-              style: TextStyle(fontSize: 15, fontWeight:FontWeight.w500, color: Colors.blueAccent)
-          ),
-          Divider(
-            height: 10,
-            thickness: 1,
-            indent: 40,
-            endIndent: 40,
-            color: Colors.blue,
-          ),
-        ],
+    return StreamBuilder<QuerySnapshot>(
+      stream: _userInfoStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+        if(snapshot.hasError){
+          return Text('Something went wrong');
+        }
+        if(snapshot.connectionState==ConnectionState.waiting){
+          return Text('Loading...');
+        }
+
+        return new Column(
+          children: snapshot.data.docs.map((DocumentSnapshot document) {
+            return new Column(
+              children: [
+                _image == null
+                    ? Image.network('https://i1.wp.com/blogs.un.org/wp-content/uploads/2015/10/LOGO2.jpg', height: 149)
+                    : Image.file(_image, height: 149,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.photo_camera),
+                      onPressed: getImage,
+                    ),
+                  ],
+                ),
+                Text(
+                    document.data()['FirstName'].toString()+" "+document.data()['LastName'].toString(),
+                    // Text(auth.currentUser.uid),
+                    style: TextStyle(fontSize: 15, fontWeight:FontWeight.w500, color: Colors.blueAccent)
+                ),
+                Divider(
+                  height: 10,
+                  thickness: 1,
+                  indent: 40,
+                  endIndent: 40,
+                  color: Colors.blue,
+                ),
+              ],
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }

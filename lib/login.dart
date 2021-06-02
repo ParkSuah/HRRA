@@ -140,6 +140,14 @@ class ApplicationState extends ChangeNotifier {
       var credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await credential.user.updateProfile(displayName: firstName + lastName);
+      CollectionReference posts = FirebaseFirestore.instance.collection('userInfo');
+      posts.add({
+        'uuid': FirebaseAuth.instance.currentUser.uid,
+        'FirstName': firstName,
+        'LastName': lastName,
+        'phoneNumber': phone,
+        'position': position==0? 'General':'HR',
+      });
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }
