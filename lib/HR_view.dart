@@ -1,7 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'offer.dart';
 
 class HRviewPage extends StatefulWidget {
@@ -17,24 +17,51 @@ class _HRviewPageState extends State<HRviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('HR View')),
-      body: MyStateWidget(),
+      body: MyStatelessWidget(),
     );
   }
+
+  // Widget _buildCol(BuildContext context, DocumentSnapshot data) {
+  //   final Offer offer = Offer.fromSnapshot(data);
+  //
+  //   return ListView{
+  //     scrollDirection: Axis.horizontal,
+  //     children: [
+  //
+  //   rows: const <DataRow>(
+  //       cells: <DataCell>[
+  //         DataCell(Text('12345')),
+  //         // DataCell(Text(offer.ID)),
+  //         DataCell(Text('Suah')),
+  //         DataCell(Text('Park')),
+  //         DataCell(Text('F')),
+  //         DataCell(Text('USA')),
+  //         DataCell(Text('Position1')),
+  //         DataCell(Text('2')),
+  //         DataCell(Text('LA')),
+  //         DataCell(Text('12345.pdf')),
+  //       ],
+  //     )
+  //   },
+  // },
+  // }
+
 }
 
-class MyStateWidget extends StatefulWidget {
+class MyStatelessWidget extends StatelessWidget {
   Offer offer;
-  MyStateWidget({this.offer});
-
-  @override
-  State<StatefulWidget> createState() => MyStateWidgetState();
-}
-
-class MyStateWidgetState extends State<MyStateWidget>{
+  MyStatelessWidget({this.offer});
+//
+//   @override
+//   State<StatefulWidget> createState() => MyStateWidgetState();
+// }
+//
+// class MyStateWidgetState extends State<MyStateWidget>{
   // const MyStateWidget({Key key}) : super(key: key);
 
   @override
-  Widget _buildMyStateWidget(BuildContext context, Offer offer) {
+  Widget build(BuildContext context) {
+    CollectionReference offers = FirebaseFirestore.instance.collection('offering');
     return  ListView(
       scrollDirection: Axis.horizontal,
         children: [
@@ -95,11 +122,33 @@ class MyStateWidgetState extends State<MyStateWidget>{
                 ),
               ),
             ],
+
+            // return FutureBuilder<DocumentSnapshot>(
+            //   future: offers.doc(offers.id).get(),
+            //   builder:
+            //   (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+            //   if (snapshot.hasError) {
+            //   return Text("Something went wrong");
+            //   }
+            //
+            //   if (snapshot.hasData && !snapshot.data.exists) {
+            //   return Text("Document does not exist");
+            //   }
+            //
+            //   if (snapshot.connectionState == ConnectionState.done) {
+            //   Map<String, dynamic> data = snapshot.data.data();
+            //   return Text("Full Name: ${data['firstname']} ${data['lastname']}");
+            //   }
+            //
+            //   return Text("loading");
+            //   },
+            // );
+
             rows: const <DataRow>[
               DataRow(
                 cells: <DataCell>[
-                  // DataCell(Text('12345')),
-                  DataCell(Text(offer.ID)),
+                  DataCell(Text('12345')),
+                  // DataCell(Text(offer.ID)),
                   DataCell(Text('Suah')),
                   DataCell(Text('Park')),
                   DataCell(Text('F')),

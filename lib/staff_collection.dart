@@ -3,11 +3,15 @@ import 'dart:io';
 
 import 'package:final_project/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'authentication.dart';
 import 'login.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+String DOCid = '';
 
 class StaffCollectionPage extends StatefulWidget {
   @override
@@ -52,7 +56,7 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
                           child: TextFormField(
                             controller: _nationlityController,
                             decoration: const InputDecoration(
-                              hintText: 'nationality?',
+                              hintText: 'Your Nationality',
                             ),
                             validator: (value) {
                               if (value.isEmpty) {
@@ -67,7 +71,7 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
                           child: TextFormField(
                             controller: _titleController,
                             decoration: const InputDecoration(
-                              hintText: 'current position title?',
+                              hintText: 'Your Current position title',
                             ),
                             validator: (value) {
                               if (value.isNotEmpty) {
@@ -82,7 +86,7 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
                           child: TextFormField(
                             controller: _levelController,
                             decoration: const InputDecoration(
-                              hintText: 'current position level?',
+                              hintText: 'Your current position level',
                             ),
                             validator: (value) {
                               if (value.isNotEmpty) {
@@ -97,7 +101,7 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
                           child: TextFormField(
                             controller: _dutyStationController,
                             decoration: const InputDecoration(
-                              hintText: 'current duty station?',
+                              hintText: 'Your current duty station',
                             ),
                             validator: (value) {
                               if (value.isNotEmpty) {
@@ -112,7 +116,7 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
                           child: TextFormField(
                             controller: _PHPController,
                             decoration: const InputDecoration(
-                              hintText: 'PHP?',
+                              hintText: 'Your PHP',
                             ),
                             validator: (value) {
                               if (value.isEmpty) {
@@ -190,7 +194,7 @@ class _ImagePickerState extends State<ImagePickerWidget>{
             ],
           ),
           Text(
-              'Name',
+              'Your Name',
               // Text(auth.currentUser.uid),
               style: TextStyle(fontSize: 15, fontWeight:FontWeight.w500, color: Colors.blueAccent)
           ),
