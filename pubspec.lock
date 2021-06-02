@@ -7,7 +7,11 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "2.7.0"
+=======
+    version: "2.6.1"
+>>>>>>> Stashed changes
   boolean_selector:
     dependency: transitive
     description:
@@ -321,7 +325,11 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< Updated upstream
     version: "0.4.0"
+=======
+    version: "0.3.0"
+>>>>>>> Stashed changes
   typed_data:
     dependency: transitive
     description:
