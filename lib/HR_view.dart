@@ -141,8 +141,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             value: data['isSelected'],
             onChanged: (bool newValue) {
               setState(() {
+                final uuid = data.id;
                 // _isChecked = data['isSelected'];
-                posts.doc(posts.path).update({
+                posts.doc(uuid).update({
                   'isSelected': newValue,
                 });
                 // data['isSelected'] = newValue;

@@ -125,15 +125,30 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   DataRow _buildListItem(BuildContext context, DocumentSnapshot data){
     // String current_doc = data['']
     CollectionReference posts = FirebaseFirestore.instance.collection('offering');
-    return DataRow(cells: [
-      DataCell(Expanded(child: new Text(data['firstname']))),
-      DataCell(Expanded(child: new Text(data['lastname']))),
-      DataCell(Expanded(child: new Text(data['gender']))),
-      DataCell(Expanded(child: new Text(data['nationality']))),
-      DataCell(Expanded(child: new Text(data['cu_position_title']))),
-      DataCell(Expanded(child: new Text(data['cu_position_level']))),
-      DataCell(Expanded(child: new Text(data['cu_position_dutystation']))),
-      DataCell(Expanded(child: new Text(data['PHP']))),
-    ]);
+    bool select = data['isSelected'];
+    if(select){
+      print("select: " + select.toString());
+      return DataRow(cells: [
+        DataCell(Expanded(child: new Text(data['firstname']))),
+        DataCell(Expanded(child: new Text(data['lastname']))),
+        DataCell(Expanded(child: new Text(data['gender']))),
+        DataCell(Expanded(child: new Text(data['nationality']))),
+        DataCell(Expanded(child: new Text(data['cu_position_title']))),
+        DataCell(Expanded(child: new Text(data['cu_position_level']))),
+        DataCell(Expanded(child: new Text(data['cu_position_dutystation']))),
+        DataCell(Expanded(child: new Text(data['PHP']))),
+      ]);
+    }
+    else {                //can't edit
+      return DataRow(cells: [
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+        DataCell(Expanded(child: new Text(' '))),
+      ]);    }
   }
 }
