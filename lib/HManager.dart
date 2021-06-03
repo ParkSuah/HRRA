@@ -119,6 +119,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
   List<DataRow> _buildList(BuildContext context, List<DocumentSnapshot> snapshot){
+    // bool select = snapshot.docs.data['isSelected'];
     return snapshot.map((data) => _buildListItem(context, data)).toList();
   }
 
