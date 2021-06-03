@@ -47,7 +47,7 @@ class Offer {
   final String cu_position_title;
   final String cu_position_level;
   final String cu_position_dutystation;
-  final bool isSelected;
+  bool isSelected;
   final Timestamp created;
   final Timestamp modified;
   DocumentReference reference;

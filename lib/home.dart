@@ -120,6 +120,19 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text('Posting'),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.lightGreenAccent,
+                        minimumSize: Size(200, 100),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/HManager');
+                      },
+                      child: Text('Hiring Manager'),
+                    ),
                   ]),
             ],
           ),

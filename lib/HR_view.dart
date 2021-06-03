@@ -18,15 +18,20 @@ class _HRviewPageState extends State<HRviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('HR View')),
-      body: MyStatelessWidget(),
+      body: MyStatefulWidget(),
     );
   }
 }
 
-class MyStatelessWidget extends StatelessWidget {
-  final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('offering').snapshots();
+class MyStatefulWidget extends StatefulWidget {
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
 
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final Stream<QuerySnapshot> _usersStream =
+  FirebaseFirestore.instance.collection('offering').snapshots();
+  var _isChecked = false;
   @override
   Widget build(BuildContext context) {
     // List<DocumentSnapshot> document;
@@ -128,10 +133,23 @@ class MyStatelessWidget extends StatelessWidget {
   }
 
   DataRow _buildListItem(BuildContext context, DocumentSnapshot data){
-    final record = Offer.fromSnapshot(data);
-
+    // String current_doc = data['']
+    CollectionReference posts = FirebaseFirestore.instance.collection('offering');
     return DataRow(cells: [
-      DataCell(new Checkbox(value: false, onChanged: (bool value){})),
+      DataCell(
+          new Checkbox(
+            value: data['isSelected'],
+            onChanged: (bool newValue) {
+              setState(() {
+                // _isChecked = data['isSelected'];
+                posts.doc(posts.path).update({
+                  'isSelected': newValue,
+                });
+                // data['isSelected'] = newValue;
+              });
+            },
+          )
+      ),
       DataCell(Expanded(child: new Text(data['firstname']))),
       DataCell(Expanded(child: new Text(data['lastname']))),
       DataCell(Expanded(child: new Text(data['gender']))),
