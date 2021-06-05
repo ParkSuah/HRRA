@@ -67,7 +67,9 @@ class _PsbMatchingPageState extends State<PsbMatchingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Possible Matching')),
-      body: Container(child: _buildBody(context)),
+      body: Container(
+          child: _buildBody(context)
+      ),
     );
   }
 }

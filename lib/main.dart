@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'HManager.dart';
+import 'final.dart';
 import 'home.dart';
 import 'login.dart';
 import 'gain.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         '/HManager': (context) => HManagerPage(),
         '/posting': (context) => PostingPage(),
         '/matching': (context) => PsbMatchingPage(),
+        '/final_decision': (context) => FinalPage(),
       },
       onGenerateRoute: _getRoute,
       // TODO: Add a theme (103)
