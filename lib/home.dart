@@ -29,6 +29,14 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {
               FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, '/staff_collection');
+            },
+            icon: Icon(Icons.person),
+            color: Colors.white,
+          ),
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
               Navigator.pushNamed(context, '/login');
             },
             icon: Icon(Icons.logout),
@@ -38,102 +46,167 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(10),
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.all(30),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.pinkAccent,
-                          minimumSize: Size(200, 100),
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ElevatedButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.lime,
+                              minimumSize: Size(200, 200),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/application_offer');
+                            },
+                            child: Text('Job Offer')),
+                        SizedBox(
+                          width: 30,
                         ),
-                     onPressed: () {
-                          Navigator.pushNamed(context, '/application_offer');
-                        },
-                        child: Text('Job Offer')),
-                    SizedBox(
-                      height: 10,
+                      ],
                     ),
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
-                        minimumSize: Size(200, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/application_apply');
-                      },
-                      child: Text('Job Apply'),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
-                        minimumSize: Size(200, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/HR_view');
-                      },
-                      child: Text('HR View'),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    // 만약 현재 유저가 HM 라면 보여지는 버튼으로 구현
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.pinkAccent,
-                        minimumSize: Size(200, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/matching');
-                      },
-                      child: Text('Possible Matching'),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Colors.pinkAccent,
-                        minimumSize: Size(200, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/staff_collection');
-                      },
-                      child: Text('Staff Info'),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
-                        minimumSize: Size(200, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/posting');
-                      },
-                      child: Text('Posting'),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.lightGreenAccent,
-                        minimumSize: Size(200, 100),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/HManager');
-                      },
-                      child: Text('Hiring Manager'),
-                    ),
+                    SizedBox(height: 10,),
+                    Text("You can display your job and find \nnew person for your job position.", textAlign: TextAlign.justify),
                   ]),
+              /*
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lime,
+                          minimumSize: Size(200, 200),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/application_apply');
+                        },
+                        child: Text('Job Apply'),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  Text('AA'),
+                ],
+              ),
+               */
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lime,
+                          minimumSize: Size(200, 200),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/HR_view');
+                        },
+                        child: Text('HR View'),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  Text("dd"),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      // 만약 현재 유저가 HM 라면 보여지는 버튼으로 구현
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lime,
+                          minimumSize: Size(200, 200),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/matching');
+                        },
+                        child: Text('Possible Matching'),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              // Column(
+              //   children: [
+              //     Row(
+              //       children: [
+              //         // ElevatedButton(
+              //         //   style: TextButton.styleFrom(
+              //         //     backgroundColor: Colors.lime,
+              //         //     minimumSize: Size(200, 200),
+              //         //   ),
+              //         //   onPressed: () {
+              //         //     Navigator.pushNamed(context, '/staff_collection');
+              //         //   },
+              //         //   child: Text('Staff Info'),
+              //         // ),
+              //         // SizedBox(
+              //         //   width: 30,
+              //         // ),
+              //       ],
+              //     )
+              //   ],
+              // ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lime,
+                          minimumSize: Size(200, 200),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/posting');
+                        },
+                        child: Text('Job Apply'),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  Text("dd"),
+                ],
+              ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.lime,
+                          minimumSize: Size(200, 200),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/HManager');
+                        },
+                        child: Text('Hiring Manager'),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  Text("dd")
+                ],
+              ),
             ],
           ),
         ),

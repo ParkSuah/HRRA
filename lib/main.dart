@@ -1,6 +1,7 @@
 
 
 import 'package:final_project/HR_view.dart';
+import 'package:final_project/possibleMatching.dart';
 import 'package:final_project/posting.dart';
 import 'package:final_project/staff_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/HR_view': (context) => HRviewPage(),
         '/HManager': (context) => HManagerPage(),
         '/posting': (context) => PostingPage(),
+        '/matching': (context) => PsbMatchingPage(),
       },
       onGenerateRoute: _getRoute,
       // TODO: Add a theme (103)
