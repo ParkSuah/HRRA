@@ -29,6 +29,14 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {
               FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, '/staff_collection');
+            },
+            icon: Icon(Icons.person),
+            color: Colors.white,
+          ),
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
               Navigator.pushNamed(context, '/login');
             },
             icon: Icon(Icons.logout),
@@ -46,26 +54,26 @@ class _HomePageState extends State<HomePage> {
             children: [
               Column(
                   children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.lime,
-                          minimumSize: Size(200, 200),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ElevatedButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.lime,
+                              minimumSize: Size(200, 200),
+                            ),
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/application_offer');
+                            },
+                            child: Text('Job Offer')),
+                        SizedBox(
+                          width: 30,
                         ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/application_offer');
-                        },
-                        child: Text('Job Offer')),
-                    SizedBox(
-                      width: 30,
+                      ],
                     ),
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Text("You can display your job and find \nnew person for your job position.", textAlign: TextAlign.justify),
-              ]),
+                    SizedBox(height: 10,),
+                    Text("You can display your job and find \nnew person for your job position.", textAlign: TextAlign.justify),
+                  ]),
               /*
               Column(
                 children: [
@@ -77,6 +85,7 @@ class _HomePageState extends State<HomePage> {
                           minimumSize: Size(200, 200),
                         ),
                         onPressed: () {
+
                           Navigator.pushNamed(context, '/application_apply');
                         },
                         child: Text('Job Apply'),
@@ -134,27 +143,27 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.lime,
-                          minimumSize: Size(200, 200),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/staff_collection');
-                        },
-                        child: Text('Staff Info'),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                    ],
-                  )
-                ],
-              ),
+              // Column(
+              //   children: [
+              //     Row(
+              //       children: [
+              //         // ElevatedButton(
+              //         //   style: TextButton.styleFrom(
+              //         //     backgroundColor: Colors.lime,
+              //         //     minimumSize: Size(200, 200),
+              //         //   ),
+              //         //   onPressed: () {
+              //         //     Navigator.pushNamed(context, '/staff_collection');
+              //         //   },
+              //         //   child: Text('Staff Info'),
+              //         // ),
+              //         // SizedBox(
+              //         //   width: 30,
+              //         // ),
+              //       ],
+              //     )
+              //   ],
+              // ),
               Column(
                 children: [
                   Row(

@@ -1,6 +1,7 @@
 
 
 import 'package:final_project/HR_view.dart';
+import 'package:final_project/possibleMatching.dart';
 import 'package:final_project/posting.dart';
 import 'package:final_project/staff_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'HManager.dart';
+import 'final.dart';
 import 'home.dart';
 import 'login.dart';
 import 'gain.dart';
@@ -45,6 +47,8 @@ class MyApp extends StatelessWidget {
         '/HR_view': (context) => HRviewPage(),
         '/HManager': (context) => HManagerPage(),
         '/posting': (context) => PostingPage(),
+        '/matching': (context) => PsbMatchingPage(),
+        '/final_decision': (context) => FinalPage(),
       },
       onGenerateRoute: _getRoute,
       // TODO: Add a theme (103)
