@@ -46,10 +46,11 @@ class _PostingPageState extends State<PostingPage> {
                               children: [
                                 TextButton(onPressed: (){
                                   print("apply button pressed");
-                                  Navigator.pushNamed(context, '/application_apply');
+                                  print(document.id);
+                                  Navigator.pushNamed(context, '/application_apply', arguments: document.id);
                                 },
-                                    child: Expanded(child: Text("Apply")),),
-                                    Expanded(flex: 5, child: SizedBox(width: 50,)),
+                                    child: Text("Apply")),
+                                    SizedBox(width: 10,),
                               ],
                             ),)
                           ],

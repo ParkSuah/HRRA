@@ -146,7 +146,7 @@ class ApplicationState extends ChangeNotifier {
         'FirstName': firstName,
         'LastName': lastName,
         'phoneNumber': phone,
-        'position': position==0? 'General':'HR',
+        'position': position==0? 'General': position==1? 'Hiring Manager':'HR',
       });
     } on FirebaseAuthException catch (e) {
       errorCallback(e);

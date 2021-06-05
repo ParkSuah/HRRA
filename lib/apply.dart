@@ -51,6 +51,8 @@ class _ApplyPageState extends State<ApplyPage> {
                   return posts
                       .add({
                     'uuid': uuid,
+                    'approval': false,
+                    //'target_docId':
                     'isSelected' : isSelected,
                     'PHP': _phpController.text,
                     'ID': _IdController.text,

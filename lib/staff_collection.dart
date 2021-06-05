@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:final_project/widgets.dart';
@@ -135,15 +134,17 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
-                        onPressed: (){
+                        onPressed: () {
                           //Navigator.pop(context);
                           print('Withdraw');
                           // 현재 업로드되어있는 php 회수
                         },
                         child: Text('Withdraw')),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     ElevatedButton(
-                        onPressed: (){
+                        onPressed: () {
                           print('Uploaded PHP');
                         },
                         child: Text('Uploaded PHP')),
@@ -152,16 +153,15 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
 
-class ImagePickerWidget extends StatefulWidget{
+class ImagePickerWidget extends StatefulWidget {
   _ImagePickerState createState() => _ImagePickerState();
 }
 
-class _ImagePickerState extends State<ImagePickerWidget>{
+class _ImagePickerState extends State<ImagePickerWidget> {
   File _image;
   final picker = ImagePicker();
 
@@ -169,61 +169,75 @@ class _ImagePickerState extends State<ImagePickerWidget>{
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
-      if(pickedFile != null){
+      if (pickedFile != null) {
         _image = File(pickedFile.path);
-      }else{
+      } else {
         print('No image selected (default here)');
       }
     });
   }
 
-  final Stream<QuerySnapshot> _userInfoStream = FirebaseFirestore.instance.collection('userInfo').snapshots();
+  final Stream<QuerySnapshot> _userInfoStream =
+      FirebaseFirestore.instance.collection('userInfo').snapshots();
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     // FirebaseProvider
     return StreamBuilder<QuerySnapshot>(
-      stream: _userInfoStream,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-        if(snapshot.hasError){
-          return Text('Something went wrong');
-        }
-        if(snapshot.connectionState==ConnectionState.waiting){
-          return Text('Loading...');
-        }
+        stream: _userInfoStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text('Loading...');
+          }
 
-        return new Column(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
-            return new Column(
-              children: [
-                _image == null
-                    ? Image.network('https://i1.wp.com/blogs.un.org/wp-content/uploads/2015/10/LOGO2.jpg', height: 149)
-                    : Image.file(_image, height: 149,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.photo_camera),
-                      onPressed: getImage,
+          return new Column(children: [
+            Column(children: [
+              _image == null
+                  ? Image.network(
+                      'https://i1.wp.com/blogs.un.org/wp-content/uploads/2015/10/LOGO2.jpg',
+                      height: 149)
+                  : Image.file(
+                      _image,
+                      height: 149,
                     ),
-                  ],
-                ),
-                Text(
-                    document.data()['FirstName'].toString()+" "+document.data()['LastName'].toString(),
-                    // Text(auth.currentUser.uid),
-                    style: TextStyle(fontSize: 15, fontWeight:FontWeight.w500, color: Colors.blueAccent)
-                ),
-                Divider(
-                  height: 10,
-                  thickness: 1,
-                  indent: 40,
-                  endIndent: 40,
-                  color: Colors.blue,
-                ),
-              ],
-            );
-          }).toList(),
-        );
-      },
-    );
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.photo_camera),
+                    onPressed: getImage,
+                  ),
+                ],
+              ),
+              new Text(_username(context, snapshot.data.docs),
+                  // Text(auth.currentUser.uid),
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.blueAccent)),
+              Divider(
+                height: 10,
+                thickness: 1,
+                indent: 40,
+                endIndent: 40,
+                color: Colors.blue,
+              ),
+            ]),
+          ]);
+        });
+  }
+  String _username(BuildContext context, List<DocumentSnapshot> snapshot){
+    String realName ;
+    String nullName ;
+    snapshot.map((data){
+      if(data['uuid'] == FirebaseAuth.instance.currentUser.uid){
+        realName = data['FirstName']+' '+data['LastName'];
+      }else{
+        nullName = "No Name Loaded";
+      }
+    }).toList();
+    return realName;
   }
 }

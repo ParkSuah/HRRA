@@ -396,8 +396,17 @@ class _RegisterFormState extends State<RegisterForm> {
                         TextButton(
                           child: Text('Hiring Manager'),
                           onPressed: (){
-                            selected_position = 0;
+                            selected_position = 1;
                             print('Hiring Manager');
+                            // 선택된 버튼은 표시
+                          },
+                        ),
+                        SizedBox(width: 20,),
+                        TextButton(
+                          child: Text('HR'),
+                          onPressed: (){
+                            selected_position = 2;
+                            print('HR');
                             // 선택된 버튼은 표시
                           },
                         ),
