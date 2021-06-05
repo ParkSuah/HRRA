@@ -66,10 +66,37 @@ class _PsbMatchingPageState extends State<PsbMatchingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Possible Matching')),
+      appBar: AppBar(
+          title: Text('Possible Matching'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  content: Text('There are no other cases!'),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                );
+
+                // Find the ScaffoldMessenger in the widget tree
+                // and use it to show a SnackBar.
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              child: Text("Other Cases",
+                style: new TextStyle(
+                color: Colors.white,
+              ),
+              ),
+            )
+          ],
+      ),
       body: Container(
           child: _buildBody(context)
       ),
     );
   }
 }
+
