@@ -1,4 +1,5 @@
 // import 'package:flutter_web/material.dart';
+import 'package:final_project/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/utils/myColors.dart';
 import 'package:final_project/widgets/header.dart';
@@ -16,7 +17,7 @@ class FirstPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
-            children: <Widget>[Header(), Body()],
+            children: <Widget>[HeaderWidget(), Body()],
           ),
         ),
       ),

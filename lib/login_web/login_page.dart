@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_web/material.dart';
 import 'package:final_project/router.dart' as router;
 import 'package:final_project/utils/responsive_widget.dart';
-// import 'package:final_project/utils/widgets_lib.dart';
+import 'package:final_project/utils/widgets_lib.dart';
 import 'package:provider/provider.dart';
 import 'auth_service.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+// import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 
 class LogInPage extends StatefulWidget {
@@ -34,7 +34,7 @@ class _LogInPageState extends State<LogInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LogIn'),
+        title: Text('Login'),
       ),
       body: body(context),
     );
@@ -42,9 +42,10 @@ class _LogInPageState extends State<LogInPage> {
 
   Widget body(BuildContext context) {
     if (ResponsiveWidget.isSmallScreen(context)) {
+      print("small");
       return smallScreen(context);
     }
-
+     print("large");
     return largeScreen(context);
   }
 
@@ -82,7 +83,7 @@ class _LogInPageState extends State<LogInPage> {
           height: MediaQuery.of(context).size.height,
           child: Container(
               padding: const EdgeInsets.all(16.0),
-              child: Column(children: [
+              child: ListView(children: [
                 Card(
                     child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -126,7 +127,7 @@ class _LogInPageState extends State<LogInPage> {
         setState(() {
           _hintText = 'Signed In\n\nUser id: $userId';
           //user created his account. Now directly sign-in
-          Navigator.pushReplacementNamed(context, router.USER_PROFILE,
+          Navigator.of(context).pushReplacementNamed('user_profile',
               arguments: firebaseUser);
         });
       } catch (e) {
@@ -183,13 +184,12 @@ class _LogInPageState extends State<LogInPage> {
     switch (_formType) {
       case FormType.login:
         return [
-          SignInButton(
-              Buttons.Email
-              // text: 'Login',
-              // height: 44.0,
-              // backgroundColor: Colors.blue,
-              // onPressed: submitForm
-            ),
+          LogInButton(
+              key: Key('login'),
+              text: 'Login',
+              height: 44.0,
+              backgroundColor: Colors.blue,
+              onPressed: submitForm),
           SizedBox(
             height: 10,
           ),
@@ -203,12 +203,12 @@ class _LogInPageState extends State<LogInPage> {
         ];
       case FormType.register:
         return [
-          // SignInButton(
-          //     key: Key('create_account'),
-          //     text: 'Register',
-          //     height: 44.0,
-          //     backgroundColor: Colors.blue,
-          //     onPressed: submitForm),
+          LogInButton(
+              key: Key('create_account'),
+              text: 'Register',
+              height: 44.0,
+              backgroundColor: Colors.blue,
+              onPressed: submitForm),
           SizedBox(
             height: 10,
           ),

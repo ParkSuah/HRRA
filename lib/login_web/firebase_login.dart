@@ -9,8 +9,6 @@ import 'package:final_project/login_web/login_page.dart';
 import 'package:final_project/login_web/start_profile.dart';
 import 'package:provider/provider.dart';
 
-import '../login.dart';
-
 //user Firebase Auth to login using Google account credentials
 class FirebaseAuthLogin extends StatefulWidget {
   @override

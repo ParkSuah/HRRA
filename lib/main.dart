@@ -15,17 +15,20 @@ import 'home.dart';
 import 'login.dart';
 import 'gain.dart';
 import 'apply.dart';
+import 'login_web/login_page.dart';
+import 'login_web/start_profile.dart';
 
 void main() async {
   runApp(
     ChangeNotifierProvider(
         create: (context) => ApplicationState(),
-        builder: (context, _) => MyApp(),
+        builder: (context, firebaseUser) => MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  User get user => null;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/first': (context) =>FirstPage(),
         '/login': (context) => LoginPage(),
+        // '/user_profile': (context) => UserProfilePage(context, user),
+        // '/login': (context) => LogInPage(),
         '/application_offer': (context) => GainPage(),
         '/application_apply': (context) => ApplyPage(),
         '/staff_collection': (context) => StaffCollectionPage(),

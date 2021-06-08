@@ -1,6 +1,6 @@
 class Strings {
   static const String appTitle = "Human Resource Relocation Automation";
-  static const String logoTitle = "hra";
+  static const String logoTitle = "HRA";
   static const String loginButton = "Login";
   static const String hello = "Hello!";
   static const String welcomeTo = "Let's ";
