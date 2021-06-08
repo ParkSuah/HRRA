@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'HManager.dart';
 import 'final.dart';
+import 'first.dart';
 import 'home.dart';
 import 'login.dart';
 import 'gain.dart';
@@ -32,14 +33,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.cyan,
       ),
-      title: 'Shrine',
-      // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
+      title: 'final_project',
       home: HomePage(),
-      // TODO: Make currentCategory field take _currentCategory (104)
-      // TODO: Pass _currentCategory for frontLayer (104)
-      // TODO: Change backLayer field value to CategoryMenuPage (104)
-      initialRoute: '/login',
+      initialRoute: '/first',
       routes: {
+        '/first': (context) =>FirstPage(),
         '/login': (context) => LoginPage(),
         '/application_offer': (context) => GainPage(),
         '/application_apply': (context) => ApplyPage(),
@@ -51,18 +49,17 @@ class MyApp extends StatelessWidget {
         '/final_decision': (context) => FinalPage(),
       },
       onGenerateRoute: _getRoute,
-      // TODO: Add a theme (103)
     );
   }
 
   Route<dynamic> _getRoute(RouteSettings settings) {
-    if (settings.name != '/login') {
+    if (settings.name != '/first') {
       return null;
     }
 
     return MaterialPageRoute<void>(
       settings: settings,
-      builder: (BuildContext context) => LoginPage(),
+      builder: (BuildContext context) => FirstPage(),
       fullscreenDialog: true,
     );
   }
