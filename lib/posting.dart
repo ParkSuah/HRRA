@@ -7,9 +7,6 @@ import 'package:image_picker/image_picker.dart';
 import 'offer.dart';
 
 class PostingPage extends StatefulWidget {
-  Offer offer;
-  PostingPage({this.offer});
-
   @override
   _PostingPageState createState() => _PostingPageState();
 }
@@ -45,9 +42,12 @@ class _PostingPageState extends State<PostingPage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 TextButton(onPressed: (){
-                                  print("apply button pressed");
-                                  print(document.id);
-                                  Navigator.pushNamed(context, '/application_apply', arguments: document.id);
+                                  String arg = document.data()['Job_Id'];//document.id;//
+                                  print("send: "+arg);
+                                  // print("Job_id: "+document.data()['Job_Id']);
+                                  // print("doc_id: "+document.id);
+                                  //Navigator.pushNamed(context, '/application_apply', arguments: document);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ApplyPage(document: document)));
                                 },
                                     child: Text("Apply")),
                                     SizedBox(width: 10,),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:final_project/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,14 +11,19 @@ import 'login.dart';
 import 'offer.dart';
 
 class ApplyPage extends StatefulWidget {
-  Offer offer;
-  ApplyPage({this.offer});
+  // Offer offer;
+  // ApplyPage({this.offer});
+  DocumentSnapshot document;
+  ApplyPage({Key key, this.document}) : super(key: key);
 
   @override
-  _ApplyPageState createState() => _ApplyPageState();
+  _ApplyPageState createState() => _ApplyPageState(document :this.document);
 }
 
 class _ApplyPageState extends State<ApplyPage> {
+  DocumentSnapshot document;
+  _ApplyPageState({this.document});
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   final _formKey = GlobalKey<FormState>(debugLabel: '_apply');
@@ -32,7 +39,8 @@ class _ApplyPageState extends State<ApplyPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    // 여기서 job_id 프린트 해보기
+    print("received: "+document.data()['Job_Id']);
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -51,7 +59,6 @@ class _ApplyPageState extends State<ApplyPage> {
                   return posts
                       .add({
                     'uuid': uuid,
-                    'approval': false,
                     //'target_docId':
                     'isSelected' : isSelected,
                     'PHP': _phpController.text,
@@ -63,6 +70,8 @@ class _ApplyPageState extends State<ApplyPage> {
                     'cu_position_title': _currentTitleController.text,
                     'cu_position_level': _currentLevelController.text,
                     'cu_position_dutystation': _currentDutyStationController.text,
+                    'Job_Id': document.data()['Job_Id'],
+                    'target_position': "target_position", // argument로 받은 친구
                     'created': FieldValue.serverTimestamp(),
                     'modified': FieldValue.serverTimestamp(),
                   })

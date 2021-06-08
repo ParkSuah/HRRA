@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:final_project/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,6 +46,17 @@ class _GainPageState extends State<GainPage> {
               CollectionReference posts =
                   FirebaseFirestore.instance.collection('posting');
 
+              const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+              String RandomString(int strlen) {
+                Random rnd = new Random(new DateTime.now().millisecondsSinceEpoch);
+                String result = "";
+                for (var i = 0; i < strlen; i++) {
+                  result += chars[rnd.nextInt(chars.length)];
+                }
+                return result;
+              }
+
               Future<void> addPost() {
                 // Call the user's CollectionReference to add a new user
                 return posts
@@ -55,9 +68,9 @@ class _GainPageState extends State<GainPage> {
                       'Division': _divisionController.text,
                       'Branch': _branchController.text,
                       'Duty': _dutyStationController.text,
-
+                      'Job_Id': RandomString(20),
                       // 'uid': Users.id,
-                      'likes': 0,
+                      'approval': false, // init: -1 <--> approval complete: 1
                       'created': FieldValue.serverTimestamp(),
                       'modified': FieldValue.serverTimestamp(),
                     })

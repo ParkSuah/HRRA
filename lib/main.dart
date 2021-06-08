@@ -42,23 +42,34 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/application_offer': (context) => GainPage(),
-        '/application_apply': (context) => ApplyPage(),
+        '/application_apply': (context, {arguments}) => ApplyPage(document: arguments),
         '/staff_collection': (context) => StaffCollectionPage(),
         '/HR_view': (context) => HRviewPage(),
         '/HManager': (context) => HManagerPage(),
         '/posting': (context) => PostingPage(),
         '/matching': (context) => PsbMatchingPage(),
         '/final_decision': (context) => FinalPage(),
+        '/data_table': (context) => DataTablePage(),
       },
       onGenerateRoute: _getRoute,
       // TODO: Add a theme (103)
     );
   }
 
+  // MaterialPageRoute _buildRoute(RouteSettings settings, Widget builder){
+  //   return new MaterialPageRoute(
+  //     settings: settings,
+  //     builder: (ctx) => builder,
+  //   );
+  // }
+
   Route<dynamic> _getRoute(RouteSettings settings) {
     if (settings.name != '/login') {
       return null;
     }
+    // if(settings.name == '/grocerry/category_detail'){
+    //   return _buildRoute(settings, new PostingPage(settings.arguments));
+    // }
 
     return MaterialPageRoute<void>(
       settings: settings,
