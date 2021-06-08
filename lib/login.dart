@@ -20,7 +20,6 @@ class LoginPage extends StatelessWidget {
         startLoginFlow: appState.startLoginFlow,
         verifyEmail: appState.verifyEmail,
         signInWithEmailAndPassword: appState.signInWithEmailAndPassword,
-        //selectPosition: appState
         cancelRegistration: appState.cancelRegistration,
         registerAccount: appState.registerAccount,
         signOut: appState.signOut,
@@ -33,6 +32,9 @@ class ApplicationState extends ChangeNotifier {
   ApplicationState() {
     init();
   }
+  Future<User> currentUser() async {
+    return await FirebaseAuth.instance.currentUser;
+  }
 
   Future<void> init() async {
     await Firebase.initializeApp();
@@ -40,26 +42,6 @@ class ApplicationState extends ChangeNotifier {
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
-        // _guestBookSubscription = FirebaseFirestore.instance
-        //     .collection('userList')
-        //     .orderBy('timestamp', descending: true)
-        //     .snapshots()
-        //     .listen((snapshot) {
-        //   _guestBookMessages = [];
-        //   snapshot.docs.forEach((document) {
-        //     _guestBookMessages.add(
-        //       Users(
-        //         uuid: document.data()['uuid'],
-        //         first_name: document.data()['firstName']+"hehe",
-        //         last_name: document.data()['lastName'],
-        //         phone: document.data()['phone'],
-        //         position: document.data()['position']==1?'Hiring Manager':'General', // Nothing
-        //       ),
-        //     );
-        //   });
-        //   notifyListeners();
-        // });
-        notifyListeners();
         // Add from here // 추가하고 싶은 거 초기화하고
       } else {
         _loginState = ApplicationLoginState.loggedOut;

@@ -10,21 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'HManager.dart';
 import 'final.dart';
+import 'first.dart';
 import 'home.dart';
 import 'login.dart';
 import 'gain.dart';
 import 'apply.dart';
+import 'login_web/login_page.dart';
+import 'login_web/start_profile.dart';
 
 void main() async {
   runApp(
     ChangeNotifierProvider(
         create: (context) => ApplicationState(),
-        builder: (context, _) => MyApp(),
+        builder: (context, firebaseUser) => MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  User get user => null;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,15 +36,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.cyan,
       ),
-      title: 'Shrine',
-      // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
+      title: 'final_project',
       home: HomePage(),
-      // TODO: Make currentCategory field take _currentCategory (104)
-      // TODO: Pass _currentCategory for frontLayer (104)
-      // TODO: Change backLayer field value to CategoryMenuPage (104)
-      initialRoute: '/login',
+      initialRoute: '/first',
       routes: {
+        '/first': (context) =>FirstPage(),
         '/login': (context) => LoginPage(),
+        // '/user_profile': (context) => UserProfilePage(context, user),
+        // '/login': (context) => LogInPage(),
         '/application_offer': (context) => GainPage(),
         '/application_apply': (context, {arguments}) => ApplyPage(document: arguments),
         '/staff_collection': (context) => StaffCollectionPage(),
@@ -52,7 +55,6 @@ class MyApp extends StatelessWidget {
         '/data_table': (context) => DataTablePage(),
       },
       onGenerateRoute: _getRoute,
-      // TODO: Add a theme (103)
     );
   }
 
@@ -64,7 +66,7 @@ class MyApp extends StatelessWidget {
   // }
 
   Route<dynamic> _getRoute(RouteSettings settings) {
-    if (settings.name != '/login') {
+    if (settings.name != '/first') {
       return null;
     }
     // if(settings.name == '/grocerry/category_detail'){
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialPageRoute<void>(
       settings: settings,
-      builder: (BuildContext context) => LoginPage(),
+      builder: (BuildContext context) => FirstPage(),
       fullscreenDialog: true,
     );
   }

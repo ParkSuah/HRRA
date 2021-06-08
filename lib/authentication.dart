@@ -56,7 +56,8 @@ class Authentication extends StatelessWidget {
             backgroundColor: Colors.white24,
             title: Text("Login Page"),
           ),
-          body: ListView(
+          body:
+          ListView(
             children: [
               Row(
                 children: [
