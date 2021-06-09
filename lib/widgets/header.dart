@@ -50,7 +50,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
           const PopupMenuItem(value: NavLinks.Github, child: Text("Github")),
           // const PopupMenuItem(value: NavLinks.Videos, child: Text("Videos")),
           // const PopupMenuItem(value: NavLinks.Jobs, child: Text("Jobs")),
-          PopupMenuItem(value: NavLinks.LogIn, child: buildLoginButton(context))
+          // PopupMenuItem(value: NavLinks.Login, child: buildLoginButton(context))
         ],
       );
     }

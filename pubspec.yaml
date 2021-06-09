@@ -22,6 +22,7 @@ dependencies:
   uuid: ^1.0.0
   flutter_signin_button: ^2.0.0
   google_fonts: ^1.1.2
+  animations: ^1.1.2
 
 
   cupertino_icons: ^1.0.2
@@ -42,3 +43,8 @@ flutter:
     - assets/email.png
     - assets/flutter_image.jpg
     - assets/images/un.png
+    - assets/images/apply.jpg
+    - assets/images/hm.jpg
+    - assets/images/offer.jpg
+    - assets/images/pMatching.jpg
+    - assets/images/hr.jpg

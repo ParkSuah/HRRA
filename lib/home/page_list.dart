@@ -32,32 +32,22 @@ class ListPage extends StatelessWidget {
                 children: <Widget>[
                   MenuBar(),
                   ListItem(
-                      imageUrl:
-                      "assets/images/paper_flower_overhead_bw_w1080.jpg",
                       title: listItemTitleText,
                       description: listItemPreviewText),
                   divider,
-                  ListItem(
-                      imageUrl:
-                      "assets/images/iphone_cactus_tea_overhead_bw_w1080.jpg",
+                  ListItem2(
                       title: listItemTitleText2,
                       description: listItemPreviewText2),
                   divider,
-                  ListItem(
-                      imageUrl:
-                      "assets/images/typewriter_overhead_bw_w1080.jpg",
+                  ListItem3(
                       title: listItemTitleText3,
                       description: listItemPreviewText3),
                   divider,
-                  ListItem(
-                      imageUrl:
-                      "assets/images/coffee_paperclips_pencil_angled_bw_w1080.jpg",
+                  ListItem4(
                       title: listItemTitleText4,
                       description: listItemPreviewText4),
                   divider,
-                  ListItem(
-                      imageUrl:
-                      "assets/images/joy_note_coffee_eyeglasses_overhead_bw_w1080.jpg",
+                  ListItem5(
                       title: listItemTitleText5,
                       description: listItemPreviewText5),
                   divider,

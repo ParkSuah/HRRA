@@ -5,6 +5,8 @@ import 'package:final_project/components/color.dart';
 import 'package:final_project/components/spacing.dart';
 import 'package:final_project/components/text.dart';
 import 'package:final_project/components/typography.dart';
+
+import '../routes.dart';
 // import 'package:final_project/routes.dart';
 
 class ImageWrapper extends StatelessWidget {
@@ -89,7 +91,7 @@ class ReadMoreButton extends StatelessWidget {
               borderSide: BorderSide(color: textPrimary, width: 2),
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "READ MORE",
+                "Click Here",
                 style: GoogleFonts.montserrat(
                   textStyle: TextStyle(
                       fontSize: 14,
@@ -165,40 +167,6 @@ List<Widget> authorSection(
   ];
 }
 
-class PostNavigation extends StatelessWidget {
-  // TODO Get PostID from Global Routing Singleton.
-  // Example: String currentPage = RouteController.of(context).currentPage;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Icon(
-              Icons.keyboard_arrow_left,
-              size: 25,
-              color: textSecondary,
-            ),
-            Text("PREVIOUS POST", style: buttonTextStyle),
-          ],
-        ),
-        Spacer(),
-        Row(
-          children: <Widget>[
-            Text("NEXT POST", style: buttonTextStyle),
-            Icon(
-              Icons.keyboard_arrow_right,
-              size: 25,
-              color: textSecondary,
-            ),
-          ],
-        )
-      ],
-    );
-  }
-}
-
 class Footer extends StatelessWidget {
   // TODO Add additional footer components (i.e. about, links, logos).
   @override
@@ -214,25 +182,17 @@ class Footer extends StatelessWidget {
 }
 
 class ListItem extends StatelessWidget {
-  // TODO replace with Post item model.
   final String title;
-  final String imageUrl;
   final String description;
 
   const ListItem(
-      {Key key, @required this.title, this.imageUrl, this.description})
+      {Key key, @required this.title, this.description})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        if (imageUrl != null)
-          Container(
-            child: ImageWrapper(
-              image: imageUrl,
-            ),
-          ),
         Align(
           alignment: Alignment.centerLeft,
           child: Container(
@@ -259,7 +219,195 @@ class ListItem extends StatelessWidget {
           child: Container(
             margin: marginBottom24,
             child: ReadMoreButton(
-              // onPressed: () => Navigator.pushNamed(context, Routes.post),
+              onPressed: () => Navigator.pushNamed(context, Routes.offer),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ListItem2 extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const ListItem2(
+      {Key key, @required this.title, this.description})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom12,
+            child: Text(
+              title,
+              style: headlineTextStyle,
+            ),
+          ),
+        ),
+        if (description != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: marginBottom12,
+              child: Text(
+                description,
+                style: bodyTextStyle,
+              ),
+            ),
+          ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom24,
+            child: ReadMoreButton(
+              onPressed: () => Navigator.pushNamed(context, Routes.apply),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ListItem3 extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const ListItem3(
+      {Key key, @required this.title, this.description})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom12,
+            child: Text(
+              title,
+              style: headlineTextStyle,
+            ),
+          ),
+        ),
+        if (description != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: marginBottom12,
+              child: Text(
+                description,
+                style: bodyTextStyle,
+              ),
+            ),
+          ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom24,
+            child: ReadMoreButton(
+              onPressed: () => Navigator.pushNamed(context, Routes.HR),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ListItem4 extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const ListItem4(
+      {Key key, @required this.title, this.description})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom12,
+            child: Text(
+              title,
+              style: headlineTextStyle,
+            ),
+          ),
+        ),
+        if (description != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: marginBottom12,
+              child: Text(
+                description,
+                style: bodyTextStyle,
+              ),
+            ),
+          ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom24,
+            child: ReadMoreButton(
+              onPressed: () => Navigator.pushNamed(context, Routes.HM),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ListItem5 extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const ListItem5(
+      {Key key, @required this.title, this.description})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom12,
+            child: Text(
+              title,
+              style: headlineTextStyle,
+            ),
+          ),
+        ),
+        if (description != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: marginBottom12,
+              child: Text(
+                description,
+                style: bodyTextStyle,
+              ),
+            ),
+          ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            margin: marginBottom24,
+            child: ReadMoreButton(
+              onPressed: () => Navigator.pushNamed(context, Routes.PMat),
             ),
           ),
         ),
@@ -287,9 +435,7 @@ class MenuBar extends StatelessWidget {
           child: Row(
             children: <Widget>[
               GestureDetector(
-                onTap: () => Navigator.popUntil(
-                    context, ModalRoute.withName(Navigator.defaultRouteName)),
-                child: Text("HRA",
+                child: Text("HRRA",
                     style: GoogleFonts.montserrat(
                         color: textPrimary,
                         fontSize: 30,
@@ -311,47 +457,16 @@ class MenuBar extends StatelessWidget {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                       ),
-                      // FlatButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     "PORTFOLIO",
-                      //     style: buttonTextStyle,
-                      //   ),
-                      //   splashColor: Colors.transparent,
-                      //   hoverColor: Colors.transparent,
-                      //   highlightColor: Colors.transparent,
-                      // ),
-                      // FlatButton(
-                      //   // onPressed: () =>
-                      //       // Navigator.pushNamed(context, Routes.style),
-                      //   child: Text(
-                      //     "STYLE",
-                      //     style: buttonTextStyle,
-                      //   ),
-                      //   splashColor: Colors.transparent,
-                      //   hoverColor: Colors.transparent,
-                      //   highlightColor: Colors.transparent,
-                      // ),
-                      // FlatButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     "ABOUT",
-                      //     style: buttonTextStyle,
-                      //   ),
-                      //   splashColor: Colors.transparent,
-                      //   hoverColor: Colors.transparent,
-                      //   highlightColor: Colors.transparent,
-                      // ),
-                      // FlatButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     "CONTACT",
-                      //     style: buttonTextStyle,
-                      //   ),
-                      //   splashColor: Colors.transparent,
-                      //   hoverColor: Colors.transparent,
-                      //   highlightColor: Colors.transparent,
-                      // ),
+                      FlatButton(
+                        onPressed: () => Navigator.pushNamed(context, '/staff_collection'),
+                        child: Text(
+                          "PROFILE",
+                          style: buttonTextStyle,
+                        ),
+                        splashColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                      ),
                     ],
                   ),
                 ),
