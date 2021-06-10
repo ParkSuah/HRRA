@@ -42,13 +42,13 @@ class MyApp extends StatelessWidget {
       routes: {
         '/first': (context) =>FirstPage(),
         '/login': (context) => LoginPage(),
-        // '/user_profile': (context) => UserProfilePage(context, user),
-        // '/login': (context) => LogInPage(),
+        '/user_profile': (context) => UserProfilePage(context, user),
+        //'/login': (context) => LogInPage(),
         '/application_offer': (context) => GainPage(),
         '/application_apply': (context, {arguments}) => ApplyPage(document: arguments),
         '/staff_collection': (context) => StaffCollectionPage(),
         '/HR_view': (context) => HRviewPage(),
-        '/HManager': (context) => HManagerPage(),
+        '/HManager': (context) => HManagerPage(), // HM_view
         '/posting': (context) => PostingPage(),
         '/matching': (context) => PsbMatchingPage(),
         '/final_decision': (context) => FinalPage(),

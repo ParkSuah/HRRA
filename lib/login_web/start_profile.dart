@@ -24,6 +24,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
   String photoUrl = "";
   String displayName = "no name yet";
 
+  User currentUser;
+  BuildContext buildContext;
+
+  _UserProfilePageState({this.buildContext, this.currentUser});
+
   @override
   Widget build(BuildContext context) {
     if (widget.currentUser != null) {

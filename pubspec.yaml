@@ -21,6 +21,7 @@ dependencies:
   provider: ^5.0.0
   uuid: ^1.0.0
   flutter_signin_button: ^2.0.0
+  image_picker_web: any
 
 
   cupertino_icons: ^1.0.2
