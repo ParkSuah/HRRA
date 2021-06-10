@@ -21,8 +21,12 @@ dependencies:
   provider: ^5.0.0
   uuid: ^1.0.0
   flutter_signin_button: ^2.0.0
+<<<<<<< HEAD
+  image_picker_web: any
+=======
   google_fonts: ^1.1.2
   animations: ^1.1.2
+>>>>>>> a9b7cc51a50a4d5caab142b8fa6b632dc47af10e
 
 
   cupertino_icons: ^1.0.2

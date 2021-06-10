@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'authentication.dart';
 import 'login.dart';
 
@@ -34,6 +35,12 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
           title: Text(
             'HRRA | Staff Collection',
             style: TextStyle(color: Colors.white),
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.add),
+            onPressed: (){
+
+            },
           ),
         ),
         body: SafeArea(
@@ -162,15 +169,15 @@ class ImagePickerWidget extends StatefulWidget {
 }
 
 class _ImagePickerState extends State<ImagePickerWidget> {
-  File _image;
-  final picker = ImagePicker();
+  Image _image;
+  final picker = ImagePickerWeb; //?
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePickerWeb.getImage(outputType: ImageType.widget);
 
     setState(() {
       if (pickedFile != null) {
-        _image = File(pickedFile.path);
+        _image = pickedFile;// File(pickedFile.path);
       } else {
         print('No image selected (default here)');
       }
@@ -198,10 +205,14 @@ class _ImagePickerState extends State<ImagePickerWidget> {
                   ? Image.network(
                       'https://i1.wp.com/blogs.un.org/wp-content/uploads/2015/10/LOGO2.jpg',
                       height: 149)
-                  : Image.file(
-                      _image,
-                      height: 149,
-                    ),
+                  : Container(
+                height: 149,
+                child: _image,
+              )//Image.file(
+                      //_image,
+                      //height: 149,
+                    //)
+              ,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
