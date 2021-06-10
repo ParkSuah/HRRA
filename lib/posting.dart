@@ -46,7 +46,7 @@ class _PostingPageState extends State<PostingPage> {
                                   print("send: "+arg);
                                   // print("Job_id: "+document.data()['Job_Id']);
                                   // print("doc_id: "+document.id);
-                                  //Navigator.pushNamed(context, '/application_apply', arguments: document);
+                                  // Navigator.pushNamed(context, '/application_apply', arguments: document);
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => ApplyPage(document: document)));
                                 },
                                     child: Text("Apply")),

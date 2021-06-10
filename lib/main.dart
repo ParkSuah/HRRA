@@ -28,7 +28,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  User get user => null;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -42,8 +41,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/first': (context) =>FirstPage(),
         '/login': (context) => LoginPage(),
-        '/user_profile': (context) => UserProfilePage(context, user),
-        //'/login': (context) => LogInPage(),
+        //'/user_profile': (context) => UserProfilePage(context, user),
+        // '/user_profile': (context, {arguments}) => UserProfilePage(context, arguments),
+        // '/login': (context) => LogInPage(),
         '/application_offer': (context) => GainPage(),
         '/application_apply': (context, {arguments}) => ApplyPage(document: arguments),
         '/staff_collection': (context) => StaffCollectionPage(),
@@ -58,20 +58,10 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  // MaterialPageRoute _buildRoute(RouteSettings settings, Widget builder){
-  //   return new MaterialPageRoute(
-  //     settings: settings,
-  //     builder: (ctx) => builder,
-  //   );
-  // }
-
   Route<dynamic> _getRoute(RouteSettings settings) {
     if (settings.name != '/first') {
       return null;
     }
-    // if(settings.name == '/grocerry/category_detail'){
-    //   return _buildRoute(settings, new PostingPage(settings.arguments));
-    // }
 
     return MaterialPageRoute<void>(
       settings: settings,

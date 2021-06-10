@@ -1,6 +1,7 @@
 import 'package:final_project/home.dart';
 import 'package:flutter/material.dart';
 
+import 'home/page_list.dart';
 import 'widgets.dart';
 
 enum ApplicationLoginState {
@@ -59,11 +60,9 @@ class Authentication extends StatelessWidget {
           body:
           ListView(
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(50, 50, 50, 50),
+              Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(30.0),
                     child: ElevatedButton(
                       onPressed: () {
                         startLoginFlow();
@@ -144,7 +143,8 @@ class Authentication extends StatelessWidget {
           ),
         );
       case ApplicationLoginState.loggedIn:
-        return HomePage();
+        // return HomePage();
+        return ListPage();
       default:
         return Scaffold(
           appBar: AppBar(
@@ -223,8 +223,8 @@ class _EmailFormState extends State<EmailForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                Container(
+                  padding: const EdgeInsets.all(16.0),
                   child: TextFormField(
                     controller: _controller,
                     decoration: const InputDecoration(

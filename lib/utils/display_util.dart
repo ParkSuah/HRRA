@@ -9,21 +9,21 @@ String displayString(NavLinks link) {
     case NavLinks.Github:
       return "Github";
       break;
-    case NavLinks.Videos:
-      return "Videos";
-      break;
-
-    case NavLinks.Jobs:
-      return "Jobs";
-      break;
-
-    case NavLinks.LogIn:
-      return "LogIn";
-      break;
-
-    case NavLinks.Resources:
-      return "Resources";
-      break;
+    // case NavLinks.Videos:
+    //   return "Videos";
+    //   break;
+    //
+    // case NavLinks.Jobs:
+    //   return "Jobs";
+    //   break;
+    //
+    // case NavLinks.LogIn:
+    //   return "LogIn";
+    //   break;
+    //
+    // case NavLinks.Resources:
+    //   return "Resources";
+    //   break;
 
     default:
       return "";

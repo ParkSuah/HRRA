@@ -222,12 +222,19 @@ class _ImagePickerState extends State<ImagePickerWidget> {
                   ),
                 ],
               ),
-              new Text(_username(context, snapshot.data.docs),
+              new Text(_position(context, snapshot.data.docs),
                   // Text(auth.currentUser.uid),
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
+                      color: Colors.grey)),
+              new Text(_username(context, snapshot.data.docs),
+                  // Text(auth.currentUser.uid),
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                       color: Colors.blueAccent)),
+
               Divider(
                 height: 10,
                 thickness: 1,
@@ -250,5 +257,30 @@ class _ImagePickerState extends State<ImagePickerWidget> {
       }
     }).toList();
     return realName;
+  }
+  String _position(BuildContext context, List<DocumentSnapshot> snapshot){
+    String pos;
+    String nullpos;
+    snapshot.map((data){
+      if(data['uuid'] == FirebaseAuth.instance.currentUser.uid){
+        pos = data['position'];
+      }else{
+        nullpos = "No Position Loaded";
+      }
+    }).toList();
+    return pos;
+  }
+
+  String _phoneNum(BuildContext context, List<DocumentSnapshot> snapshot){
+    String phoneNum ;
+    String nullNum ;
+    snapshot.map((data){
+      if(data['uuid'] == FirebaseAuth.instance.currentUser.uid){
+        phoneNum = data['FirstName']+' '+data['LastName'];
+      }else{
+        nullNum = "No Name Loaded";
+      }
+    }).toList();
+    return phoneNum;
   }
 }

@@ -12,7 +12,7 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
-  var links = ["Home", "Github", "Videos", "Jobs"];
+  var links = ["Home", "Github"];
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +48,9 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         itemBuilder: (BuildContext context) => <PopupMenuEntry<NavLinks>>[
           const PopupMenuItem(value: NavLinks.Home, child: Text("Home")),
           const PopupMenuItem(value: NavLinks.Github, child: Text("Github")),
-          const PopupMenuItem(value: NavLinks.Videos, child: Text("Videos")),
-          const PopupMenuItem(value: NavLinks.Jobs, child: Text("Jobs")),
-          PopupMenuItem(value: NavLinks.LogIn, child: buildLoginButton(context))
+          // const PopupMenuItem(value: NavLinks.Videos, child: Text("Videos")),
+          // const PopupMenuItem(value: NavLinks.Jobs, child: Text("Jobs")),
+          // PopupMenuItem(value: NavLinks.Login, child: buildLoginButton(context))
         ],
       );
     }
@@ -95,7 +95,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 
     switch (link) {
       case NavLinks.Home:
-        // url = "https://flutter-to-fly.firebaseapp.com";
+        url = "https://www.un.org/en/";
         break;
 
       case NavLinks.Github:
@@ -161,21 +161,10 @@ class _HeaderWidgetState extends State<HeaderWidget> {
     return Row(
       children: <Widget>[
         Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18),
-            gradient: LinearGradient(
-                colors: [Theme.of(context).primaryColor, Theme.of(context).secondaryHeaderColor],
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft),
-          ),
+          width: 70,
+          height: 70,
           child: Center(
-            child: Text(
-              Strings.logoTitle,
-              style: Theme.of(context).textTheme.title,
-              //style: TextStyle(fontSize: 30, color: MyColors.white1),
-            ),
+            child: Image.asset('images/un.png'),
           ),
         ),
         //give some space between logo box and title
