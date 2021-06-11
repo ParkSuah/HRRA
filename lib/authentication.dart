@@ -155,8 +155,8 @@ class Authentication extends StatelessWidget {
           ),
         );
       case ApplicationLoginState.loggedIn:
-        //return HomePage();
-        return ListPage();
+        // return HomePage();
+      return ListPage();
       default:
         return Scaffold(
           appBar: AppBar(
