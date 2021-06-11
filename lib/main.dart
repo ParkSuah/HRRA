@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.cyan,
       ),
       title: 'final_project',
-      home: HomePage(),
+      home: FirstPage(),
       initialRoute: '/first',
       routes: {
         '/first': (context) =>FirstPage(),

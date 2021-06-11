@@ -471,7 +471,7 @@ class MenuBar extends StatelessWidget {
                       FlatButton(
                         onPressed: () {
                           FirebaseAuth.instance.signOut();
-                          Navigator.pushNamed(context, '/login');
+                          Navigator.pushNamed(context, '/first');
                         },
                         child: Text(
                           "LOGOUT",
