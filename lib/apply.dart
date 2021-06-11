@@ -70,7 +70,6 @@ class _ApplyPageState extends State<ApplyPage> {
                     'cu_position_title': _currentTitleController.text,
                     'cu_position_level': _currentLevelController.text,
                     'cu_position_dutystation': _currentDutyStationController.text,
-                    'Job_Id': document.data()['Job_Id'],
                     'target_position': "target_position", // argument로 받은 친구
                     'created': FieldValue.serverTimestamp(),
                     'modified': FieldValue.serverTimestamp(),
