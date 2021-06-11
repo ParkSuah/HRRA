@@ -44,6 +44,10 @@ class Authentication extends StatelessWidget {
     String lastName,
     String phone,
     int position,
+    String nationality,
+    String title,
+    String level,
+    String duty,
     void Function(Exception e) error,
   ) registerAccount;
   final void Function() signOut;
@@ -127,6 +131,10 @@ class Authentication extends StatelessWidget {
                   lastName,
                   phone,
                   position,
+                  nationality,
+                  position_title,
+                  position_level,
+                  duty_station,
                 ) {
                   registerAccount(
                       email,
@@ -135,6 +143,10 @@ class Authentication extends StatelessWidget {
                       lastName,
                       phone,
                       position,
+                      nationality,
+                      position_title,
+                      position_level,
+                      duty_station,
                       (e) => _showErrorDialog(
                           context, 'Failed to create account', e));
                 },
@@ -271,7 +283,8 @@ class RegisterForm extends StatefulWidget {
     @required this.email,
   });
   final String email;
-  final void Function(String email, String password, String firstName, String lastName, String phone, int position)
+  final void Function(String email, String password, String firstName, String lastName, String phone, int position,
+                      String nationality, String position_title, String position_level, String duty_station)
       registerAccount;
   final void Function() cancel;
   @override
@@ -285,6 +298,10 @@ class _RegisterFormState extends State<RegisterForm> {
   final _lastNameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nationalityController = TextEditingController();
+  final _positionTitleController = TextEditingController();
+  final _positionLevelController = TextEditingController();
+  final _dutyStationController = TextEditingController();
   int selected_position;
 
   @override
@@ -415,6 +432,66 @@ class _RegisterFormState extends State<RegisterForm> {
                     )
                 ),
                 Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _nationalityController,
+                    decoration: const InputDecoration(
+                      hintText: 'Nationality',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Enter your nationality';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _positionTitleController,
+                    decoration: const InputDecoration(
+                      hintText: 'Position Title',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Enter your current position title';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _positionLevelController,
+                    decoration: const InputDecoration(
+                      hintText: 'Position Level',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Enter your current position level';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: TextFormField(
+                    controller: _dutyStationController,
+                    decoration: const InputDecoration(
+                      hintText: 'Duty Station',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Enter your current duty station';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -434,6 +511,10 @@ class _RegisterFormState extends State<RegisterForm> {
                               _lastNameController.text,
                               _phoneController.text,
                               selected_position,
+                              _nationalityController.text,
+                              _positionTitleController.text,
+                              _positionLevelController.text,
+                              _dutyStationController.text,
                             );
                           }
                         },

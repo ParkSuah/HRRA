@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -461,6 +462,19 @@ class MenuBar extends StatelessWidget {
                         onPressed: () => Navigator.pushNamed(context, '/staff_collection'),
                         child: Text(
                           "PROFILE",
+                          style: buttonTextStyle,
+                        ),
+                        splashColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                      ),
+                      FlatButton(
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.pushNamed(context, '/first');
+                        },
+                        child: Text(
+                          "LOGOUT",
                           style: buttonTextStyle,
                         ),
                         splashColor: Colors.transparent,

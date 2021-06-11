@@ -29,6 +29,30 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future getDocID() async{
+      print("Im in getDocID");
+    }
+
+    // Future<void> updatePost({@required String docId}) async{
+    //   Query doc_ID = FirebaseFirestore.instance.collection('userInfo').where('uuid', isEqualTo: FirebaseAuth.instance.currentUser.uid);
+    //   DocumentReference posts = FirebaseFirestore.instance.collection('userInfo').doc(docId);
+    //   Stream<QuerySnapshot> querySnapshot = FirebaseFirestore.instance.collection('userInfo').snapshots();
+    //
+    //
+    //   return await posts
+    //       .update({
+    //     'nationality': _nationlityController.text,
+    //     'position_title': _titleController.text,
+    //     'position_level': _levelController.text,
+    //     'duty_station': _dutyStationController.text,
+    //     'PHP': _PHPController.text,
+    //   })
+    //       .then((value) => print("UserInfo Updated"))
+    //       .then((value) => Navigator.pop(context))
+    //       .catchError((error) => print("Failed to update your information: $error"));
+    // }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white24,
@@ -36,12 +60,13 @@ class _StaffCollectionPageState extends State<StaffCollectionPage> {
             'HRRA | Staff Collection',
             style: TextStyle(color: Colors.white),
           ),
-          leading: IconButton(
-            icon: Icon(Icons.add),
-            onPressed: (){
-
-            },
-          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: getDocID,
+            ),
+            SizedBox(width: 10,),
+          ]
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -177,7 +202,7 @@ class _ImagePickerState extends State<ImagePickerWidget> {
 
     setState(() {
       if (pickedFile != null) {
-        _image = pickedFile;// File(pickedFile.path);
+        _image = pickedFile; // File(pickedFile.path);
       } else {
         print('No image selected (default here)');
       }

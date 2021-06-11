@@ -117,6 +117,7 @@ class ApplicationState extends ChangeNotifier {
   }
 
   void registerAccount(String email, String password, String firstName, String lastName, String phone, int position,
+      String nationality, String title, String level, String duty,
       void Function(FirebaseAuthException e) errorCallback) async {
     try {
       var credential = await FirebaseAuth.instance
@@ -129,7 +130,12 @@ class ApplicationState extends ChangeNotifier {
         'LastName': lastName,
         'phoneNumber': phone,
         'position': position==0? 'General': position==1? 'Hiring Manager':'HR',
+        'nationality': nationality,
+        'position_title': title,
+        'position_level': level,
+        'duty_station': duty,
       });
+
     } on FirebaseAuthException catch (e) {
       errorCallback(e);
     }
@@ -148,6 +154,11 @@ class Users {
         @required this.last_name,
         @required this.phone,
         @required this.position,
+        @required this.nationality,
+        @required this.position_title,
+        @required this.position_level,
+        @required this.duty_station,
+        @required this.php,
         this.created,
         this.modified,
       }) :
@@ -155,13 +166,23 @@ class Users {
         assert(first_name != null),
         assert(last_name != null),
         assert(phone != null),
-        assert(position != null)
+        assert(position != null),
+        assert(nationality != null),
+        assert(position_title != null),
+        assert(position_level != null),
+        assert(duty_station != null),
+        assert(php != null)
   ;
   final String uuid;
   final String first_name;
   final String last_name;
   final String phone;
   final String position;
+  final String nationality;
+  final String position_title;
+  final String position_level;
+  final String duty_station;
+  final String php;
   final Timestamp created;
   final Timestamp modified;
   DocumentReference reference;
@@ -173,11 +194,21 @@ class Users {
         assert(map['last_name'] != null),
         assert(map['phone'] != null),
         assert(map['position'] != null),
+        assert(map['nationality'] != null),
+        assert(map['position_title'] != null),
+        assert(map['position_level'] != null),
+        assert(map['duty_station'] != null),
+        assert(map['php'] != null),
         uuid = map['uuid'],
         first_name = map['first_name'],
         last_name = map['last_name'],
         phone = map['phone'],
         position= map['position'],
+        nationality= map['nationality'],
+        position_title= map['position_title'],
+        position_level= map['position_level'],
+        duty_station= map['duty_station'],
+        php= map['php'],
         created = map['created']??null,
         modified = map['modified']??null;
 

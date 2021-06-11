@@ -17,7 +17,7 @@ dependencies:
   firebase_storage: "^7.0.0"
   image_picker: ^0.6.2+2
   firebase: any
-#  flutter_web: any
+  #  flutter_web: any
   provider: ^5.0.0
   uuid: ^1.0.0
   flutter_signin_button: ^2.0.0
